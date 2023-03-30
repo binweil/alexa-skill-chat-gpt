@@ -1,4 +1,5 @@
 import Alexa from 'ask-sdk';
+import * as showdown from 'showdown';
 
 const DOCUMENT_ID = "VisualizeResponseText";
 
@@ -32,10 +33,12 @@ const createDirectivePayload = (aplDocumentId, dataSources = {}, tokenId = "docu
     }
 };
 
-export function getAPIDirective(handlerInput, userInputText, responseText) {
+export function getAPIDirective(handlerInput, userInputText, responseText, imageURL) {
     if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
+        //const converter = new showdown.Converter();
         datasource.simpleTextTemplateData.properties.titleText = userInputText;
         datasource.simpleTextTemplateData.properties.primaryText = responseText;
+        datasource.simpleTextTemplateData.properties.foregroundImageSource = imageURL;
         return createDirectivePayload(DOCUMENT_ID, datasource);
     }
     return null;

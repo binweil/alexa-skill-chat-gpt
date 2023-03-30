@@ -32,6 +32,7 @@
     "chatgpt": "5.1.1",
     "i18next": "^10.5.0",
     "i18next-sprintf-postprocessor": "^0.2.2",
-    "node-fetch": "^3.3.1"
+    "node-fetch": "^3.3.1",
+    "showdown": "^2.1.0"
   }
 }
