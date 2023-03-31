@@ -55,14 +55,23 @@ export const AskingQuestionIntent = {
             apiKey: apiKey
         });
         try {
-            const textResponsePromise = await api.sendMessage(question, {
-                timeoutMs: 8000
-            });
-
             const customHeaders = {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${apiKey}`
             }
+
+            // Chat API Request
+            const chatRequest = {
+                "model": "gpt-3.5-turbo",
+                "messages": [{"role": "user", "content": question}],
+                "max_tokens": 100
+            }
+            const chatResponsePromise = fetch("https://api.openai.com/v1/chat/completions", {
+                method: 'POST',
+                headers: customHeaders,
+                body: JSON.stringify(chatRequest),
+            })
+            // Image API Request
             const imageRequest = {
                 "prompt": question,
                 "n": 1,
@@ -73,22 +82,28 @@ export const AskingQuestionIntent = {
                 headers: customHeaders,
                 body: JSON.stringify(imageRequest),
             });
-            const [textResponse, imageResponse] = await Promise.all([textResponsePromise, imageResponsePromise]);
+            
+            const [imageResponse, chatResponse] = 
+                await Promise.all([imageResponsePromise, chatResponsePromise]);
+
+            const chatResponseData = await chatResponse.json();
+            const chatResponseText = chatResponseData.choices[0].message.content;
+            console.log("Chat Response: " + chatResponseText);
+
             const imageURLData = await imageResponse.json();
             const imageURL = imageURLData.data[0].url
-            console.log(imageURL);
+            console.log("Image Response: " + imageURL);
 
-            const response = textResponse.text;
-            const aplDirective = getAPIDirective(handlerInput, question, response, imageURL);
+            const aplDirective = getAPIDirective(handlerInput, question, chatResponseText, imageURL);
             if (aplDirective != null) {
                 return handlerInput.responseBuilder
                     .addDirective(aplDirective)
-                    .speak(requestAttributes.t('QUESTION_RESPONSE', response))
+                    .speak(requestAttributes.t('QUESTION_RESPONSE', chatResponseText))
                     .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
                     .getResponse();
             }
             return handlerInput.responseBuilder
-                .speak(requestAttributes.t('QUESTION_RESPONSE', response))
+                .speak(requestAttributes.t('QUESTION_RESPONSE', chatResponseText))
                 .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
                 .getResponse();
         } catch (error) {
