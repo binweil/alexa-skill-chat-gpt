@@ -1,5 +1,25 @@
 import Alexa from "ask-sdk";
 
+const DOCUMENT_ID = "HomeScreen";
+
+const datasource = {
+    "backgroundImage": {
+        "imageSource": "https://d2s5tydsfac9v4.cloudfront.net/homepage.png"
+    }
+};
+
+const createDirectivePayload = (aplDocumentId, dataSources = {}, tokenId = "documentToken") => {
+    return {
+        type: "Alexa.Presentation.APL.RenderDocument",
+        token: tokenId,
+        document: {
+            type: "Link",
+            src: "doc://alexa/apl/documents/" + aplDocumentId
+        },
+        datasources: dataSources
+    }
+};
+
 export const LaunchRequest = {
     canHandle(handlerInput) {
         return Alexa.isNewSession(handlerInput.requestEnvelope)
@@ -15,6 +35,11 @@ export const LaunchRequest = {
 
         const speechOutput = requestAttributes.t('LAUNCH_MESSAGE');
         const reprompt = requestAttributes.t('CONTINUE_MESSAGE');
+
+        if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
+            const aplDirective = createDirectivePayload(DOCUMENT_ID, datasource);
+            handlerInput.responseBuilder.addDirective(aplDirective);
+        }
 
         return handlerInput.responseBuilder
             .speak(speechOutput)

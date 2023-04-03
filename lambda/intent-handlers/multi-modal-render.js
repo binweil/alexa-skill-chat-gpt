@@ -13,7 +13,7 @@ const datasource = {
             "foregroundImageSource": "https://d2s5tydsfac9v4.cloudfront.net/chat-gpt-108.png",
             "headerTitle": "ChatGPT Response",
             "headerSubtitle": "",
-            "hintText": "Try, \"Jarvis, what is chat gpt\"",
+            "hintText": "Try, \"Tell me what is machine learning\"",
             "primaryText": "",
             "textAlignment": "start",
             "titleText": "User Input"

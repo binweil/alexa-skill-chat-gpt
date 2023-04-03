@@ -1,5 +1,64 @@
 import Alexa from "ask-sdk";
 
+const DOCUMENT_ID = "HelpListScreen";
+
+const datasource = {
+    "textListData": {
+        "type": "object",
+        "objectId": "helpListData",
+        "listItems": [
+            {
+                "primaryText": "Chat with AI - Start your question with \"Tell me\" ",
+                "secondaryText": "ex. Tell me why sky is blue",
+                "primaryAction": [
+                    {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "REDIRECT_ASKING_QUESTION_INTENT"
+                        ]
+                    }
+                ]
+            },
+            {
+                "primaryText": "Generate Image - Start your request with \"Show Image for\"",
+                "secondaryText": "ex. Show Image for deep sea animal",
+                "primaryAction": [
+                    {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "REDIRECT_IMAGE_SEARCH_INTENT"
+                        ]
+                    }
+                ]
+            },
+            {
+                "primaryText": "Buy subscription",
+                "secondaryText": "say \"buy monthly / yearly subscription\"",
+                "primaryAction": [
+                    {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "REDIRECT_BUY_SUBS_INTENT"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+};
+
+const createDirectivePayload = (aplDocumentId, dataSources = {}, tokenId = "documentToken") => {
+    return {
+        type: "Alexa.Presentation.APL.RenderDocument",
+        token: tokenId,
+        document: {
+            type: "Link",
+            src: "doc://alexa/apl/documents/" + aplDocumentId
+        },
+        datasources: dataSources
+    }
+};
+
 export const HelpIntent = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -7,6 +66,13 @@ export const HelpIntent = {
     },
     handle(handlerInput) {
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+
+        if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
+            // generate the APL RenderDocument directive that will be returned from your skill
+            const aplDirective = createDirectivePayload(DOCUMENT_ID, datasource);
+            // add the RenderDocument directive to the responseBuilder
+            handlerInput.responseBuilder.addDirective(aplDirective);
+        }
 
         return handlerInput.responseBuilder
             .speak(requestAttributes.t('HELP_MESSAGE'))
