@@ -6,8 +6,10 @@ export const BuySubsIntent = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'BuySubsIntent';
     },
     async handle(handlerInput) {
-        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-        const billingPeriod = Alexa.getSlotValue(handlerInput.requestEnvelope, 'monthly_or_yearly');
+        let billingPeriod = "monthly";
+        if (Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest') {
+            billingPeriod = Alexa.getSlotValue(handlerInput.requestEnvelope, 'monthly_or_yearly');
+        }
         console.log("User trying to buy month or year subscription: " + billingPeriod);
 
         if (billingPeriod != null && 

@@ -34,14 +34,10 @@ const datasource = {
             {
                 "primaryText": "Buy subscription",
                 "secondaryText": "say \"buy monthly / yearly subscription\"",
-                "primaryAction": [
-                    {
-                        "type": "SendEvent",
-                        "arguments": [
-                            "REDIRECT_BUY_SUBS_INTENT"
-                        ]
-                    }
-                ]
+            },
+            {
+                "primaryText": "Cancel subscription",
+                "secondaryText": "say \"cancel monthly / yearly subscription\"",
             }
         ]
     }

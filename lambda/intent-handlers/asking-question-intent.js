@@ -9,7 +9,6 @@ function isProduct(product) {
 }
 
 function isEntitled(product) {
-    console.log("Product entitilement: " + product[0].entitled);
     return isProduct(product) &&
         product[0].entitled === 'ENTITLED';
 }

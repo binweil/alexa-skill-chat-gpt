@@ -10,8 +10,6 @@ export const APLUserEventHandler = {
     // use the event source ID to determine the button press that triggered
     // this event and use the correct handler.
     canHandle(handlerInput) {
-        console.log("APLUserEventHandler checking");
-        console.log(handlerInput.requestEnvelope.request);
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'Alexa.Presentation.APL.UserEvent';
             // The source property contains information about the component that triggered the event, including the ID for the component
             // && handlerInput.requestEnvelope.request.source.id === 'buttonWithArguments';
@@ -19,7 +17,6 @@ export const APLUserEventHandler = {
     async handle(handlerInput) {
         // The arguments property contains an array of arguments defined in the arguments property of the SendEvent command
         const arg = handlerInput.requestEnvelope.request.arguments[0];
-        console.log("APL event: " + arg)
         switch (arg) {
             case ("REDIRECT_LAUNCH_REQUEST"):
                 return LaunchRequest.handle(handlerInput);
