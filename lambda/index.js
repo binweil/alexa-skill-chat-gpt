@@ -13,6 +13,7 @@ import {ErrorHandler} from "./intent-handlers/error-handler.js";
 import {NoIntentHandler, YesIntentHandler} from "./intent-handlers/yes-no-intent-handler.js";
 import {APLUserEventHandler} from "./intent-handlers/apl-user-event-handler.js";
 import {ImageSearchIntent} from "./intent-handlers/image-search-intent.js";
+import {ClearContextIntentHandler} from "./intent-handlers/clear-context-intent.js";
 
 const skillBuilder = Alexa.SkillBuilders.custom();
 
@@ -20,15 +21,16 @@ export const handler = skillBuilder
     .addRequestHandlers(
         LaunchRequest,
         HelpIntent,
-        AskingQuestionIntent,
         ImageSearchIntent,
-        YesIntentHandler,
+        ClearContextIntentHandler,
         BuySubsIntent,
         CancelSubIntent,
-        APLUserEventHandler,
-        ExitHandler,
+        AskingQuestionIntent,
+        YesIntentHandler,
         NoIntentHandler,
+        ExitHandler,
         SessionEndedRequest,
+        APLUserEventHandler,
         FallbackHandler,
         UnhandledIntent
     )

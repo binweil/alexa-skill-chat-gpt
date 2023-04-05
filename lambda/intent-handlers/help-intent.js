@@ -8,8 +8,8 @@ const datasource = {
         "objectId": "helpListData",
         "listItems": [
             {
-                "primaryText": "Chat with AI - Start your question with \"Tell me\" ",
-                "secondaryText": "ex. Tell me why sky is blue",
+                "primaryText": "Chat with AI",
+                "secondaryText": "ex. Why sky is blue",
                 "primaryAction": [
                     {
                         "type": "SendEvent",
@@ -32,12 +32,24 @@ const datasource = {
                 ]
             },
             {
+                "primaryText": "Clear context",
+                "secondaryText": "ex. restart",
+                "primaryAction": [
+                    {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "REDIRECT_CLEAR_CONTEXT_INTENT"
+                        ]
+                    }
+                ]
+            },
+            {
                 "primaryText": "Buy subscription",
-                "secondaryText": "say \"buy monthly / yearly subscription\"",
+                "secondaryText": "say \"buy monthly / yearly subscription\""
             },
             {
                 "primaryText": "Cancel subscription",
-                "secondaryText": "say \"cancel monthly / yearly subscription\"",
+                "secondaryText": "say \"cancel monthly / yearly subscription\""
             }
         ]
     }

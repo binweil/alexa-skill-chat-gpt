@@ -1,6 +1,5 @@
 import Alexa from "ask-sdk";
 import AWS from "aws-sdk";
-import {ChatGPTAPI} from "chatgpt";
 import {getAPIDirective} from "./multi-modal-render.js";
 import {isUserEntitled} from "../utilities/util.js";
 
@@ -23,7 +22,15 @@ export const AskingQuestionIntent = {
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
         let question = aplQuestion;
         if (aplQuestion == null || question.length === 0) {
-            question = Alexa.getSlotValue(handlerInput.requestEnvelope, 'user_input');;
+            question = Alexa.getSlotValue(handlerInput.requestEnvelope, 'question');
+        }
+        if (!sessionAttributes.chatHistory) {
+            sessionAttributes.chatHistory = [];
+        }
+        sessionAttributes.chatHistory.push({"role": "user", "content": question});
+        if (sessionAttributes.chatHistory.length > 6) {
+            sessionAttributes.chatHistory.shift();
+            sessionAttributes.chatHistory.shift();
         }
         sessionAttributes.interaction += 1;
 
@@ -47,9 +54,10 @@ export const AskingQuestionIntent = {
             // Chat API Request
             const chatRequest = {
                 "model": "gpt-3.5-turbo",
-                "messages": [{"role": "user", "content": question}],
+                "messages": sessionAttributes.chatHistory,
                 "max_tokens": 200
             }
+            console.log("Calling ChatGPT API with Request: " + JSON.stringify(chatRequest));
             const chatResponsePromise = fetch("https://api.openai.com/v1/chat/completions", {
                 method: 'POST',
                 headers: customHeaders,
@@ -72,14 +80,18 @@ export const AskingQuestionIntent = {
 
             const chatResponseData = await chatResponse.json();
             const chatResponseText = chatResponseData.choices[0].message.content;
-            console.log("Chat Response: " + chatResponseText);
+            sessionAttributes.chatHistory.push({"role": "system", "content": chatResponseText});
+            console.log("Chat Response: " + JSON.stringify(chatResponseData));
 
             const imageURLData = await imageResponse.json();
-            const imageURL = imageURLData.data[0].url
+            let imageURL = null;
+            if (imageURLData.data && imageURLData.data.length > 0) {
+                imageURL = imageURLData.data[0].url;
+            }
             console.log("Image Response: " + imageURL);
 
             const aplDirective = getAPIDirective(handlerInput, question, chatResponseText, imageURL);
-            if (aplDirective != null) {
+            if (aplDirective) {
                 return handlerInput.responseBuilder
                     .addDirective(aplDirective)
                     .speak(requestAttributes.t('QUESTION_RESPONSE', chatResponseText))

@@ -4,15 +4,11 @@ import {AskingQuestionIntent} from "./asking-question-intent.js";
 import Alexa from "ask-sdk";
 import {ImageSearchIntent} from "./image-search-intent.js";
 import {BuySubsIntent} from "./buy-subs-intent.js";
+import {ClearContextIntentHandler} from "./clear-context-intent.js";
 
 export const APLUserEventHandler = {
-    // Since an APL skill might have multiple buttons that generate UserEvents,
-    // use the event source ID to determine the button press that triggered
-    // this event and use the correct handler.
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'Alexa.Presentation.APL.UserEvent';
-            // The source property contains information about the component that triggered the event, including the ID for the component
-            // && handlerInput.requestEnvelope.request.source.id === 'buttonWithArguments';
     },
     async handle(handlerInput) {
         // The arguments property contains an array of arguments defined in the arguments property of the SendEvent command
@@ -26,6 +22,8 @@ export const APLUserEventHandler = {
                 return AskingQuestionIntent.handle(handlerInput, "why sky is blue");
             case ("REDIRECT_IMAGE_SEARCH_INTENT"):
                 return ImageSearchIntent.handle(handlerInput, "deep sea animal");
+            case ("REDIRECT_CLEAR_CONTEXT_INTENT"):
+                return ClearContextIntentHandler.handle(handlerInput);
             case ("REDIRECT_BUY_SUBS_INTENT"):
                 return BuySubsIntent.handle(handlerInput);
             default:

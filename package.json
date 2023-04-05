@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -r node_modules && rm package-lock.json",
     "build": "npm install && node ./lambda/index.js",
-    "release": "npm run build && zip -r lambda.zip ."
+    "release": "npm run build && zip -r lambda.zip . -x '.idea' -x '*.zip'"
   },
   "repository": {
     "type": "git",
