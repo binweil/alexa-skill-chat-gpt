@@ -17,13 +17,21 @@ function callDirectiveService(handlerInput) {
     const endpoint = requestEnvelope.context.System.apiEndpoint;
     const token = requestEnvelope.context.System.apiAccessToken;
 
+    const progressiveSpeechCandidates = [
+        "Hang on! I am brewing an insightful response just for you.",
+        "Thinking up a thoughtful response for you",
+        "Hold tight! I am delving into its knowledge vault to craft a personalized reply",
+        "Wait just a moment! I am concocting a delightful response, blending information and insight. Your answer is being mixed to perfection!",
+        "Stay tuned! I am on a mission to explore the depths of its knowledge to generate a meaningful response for you. I will be back in no time!"
+    ];
+
     const directive = {
        header: {
         requestId
        },
        directive: {
         type: "VoicePlayer.Speak",
-        speech: "Thinking up a thoughtful response for you"
+        speech: progressiveSpeechCandidates[Math.floor(Math.random() * progressiveSpeechCandidates.length)]
        }
     };
     return directiveServiceClient.enqueue(directive, endpoint, token);

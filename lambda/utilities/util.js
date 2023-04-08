@@ -18,6 +18,12 @@
 //
 // }
 
+export function isNullOrEmpty(string) {
+    if (!string || string.length == 0) {
+        return true;
+    }
+    return false;
+}
 
 export function isProduct(product) {
     return product != null;
