@@ -2,6 +2,7 @@ import Alexa from "ask-sdk";
 import AWS from "aws-sdk";
 import {getAPIDirective} from "./multi-modal-render.js";
 import {isUserEntitled} from "../utilities/util.js";
+import { chatCompletion, generateImage } from "../services/openai-service.js";
 
 function isProduct(product) {
     return product != null;
@@ -46,62 +47,44 @@ export const AskingQuestionIntent = {
         const rawApiKey = await secretsManager.getSecretValue({SecretId: "chatgpt/apikey"}).promise();
         const apiKey = rawApiKey.SecretString;
         try {
-            const customHeaders = {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${apiKey}`
-            }
-
             // Chat API Request
-            const chatRequest = {
-                "model": "gpt-3.5-turbo",
-                "messages": sessionAttributes.chatHistory,
-                "max_tokens": 200
-            }
-            console.log("Calling ChatGPT API with Request: " + JSON.stringify(chatRequest));
-            const chatResponsePromise = fetch("https://api.openai.com/v1/chat/completions", {
-                method: 'POST',
-                headers: customHeaders,
-                body: JSON.stringify(chatRequest),
-            })
-            // Image API Request
-            const imageRequest = {
-                "prompt": question,
-                "n": 1,
-                "size": "256x256"
-            }
-            const imageResponsePromise = fetch("https://api.openai.com/v1/images/generations", {
-                method: 'POST',
-                headers: customHeaders,
-                body: JSON.stringify(imageRequest),
-            });
-            
-            const [imageResponse, chatResponse] = 
-                await Promise.all([imageResponsePromise, chatResponsePromise]);
+            let chatResponseText = "";
+            console.log("question is: " + question);
+            const chatResponsePromise = chatCompletion(question, apiKey);
 
-            const chatResponseData = await chatResponse.json();
-            const chatResponseText = chatResponseData.choices[0].message.content;
-            sessionAttributes.chatHistory.push({"role": "system", "content": chatResponseText});
-            console.log("Chat Response: " + JSON.stringify(chatResponseData));
+            // Image API Call
+            if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
+                const imageResponsePromise = generateImage(question, apiKey);
+                const [imageResponse, chatResponse] = await Promise.all([imageResponsePromise, chatResponsePromise]);
+                
+                const chatResponseData = await chatResponse.json();
+                console.log(chatResponseData);
+                chatResponseText = chatResponseData.choices[0].message.content;
+                console.log("Chat Response: " + chatResponseText);
+    
+                const imageURLData = await imageResponse.json();
+                const imageURL = imageURLData.data[0].url
+                console.log("Image Response: " + imageURL);
 
-            const imageURLData = await imageResponse.json();
-            let imageURL = null;
-            if (imageURLData.data && imageURLData.data.length > 0) {
-                imageURL = imageURLData.data[0].url;
-            }
-            console.log("Image Response: " + imageURL);
-
-            const aplDirective = getAPIDirective(handlerInput, question, chatResponseText, imageURL);
-            if (aplDirective) {
+                const aplDirective = getAPIDirective(handlerInput, question, chatResponseText, imageURL);
+                if (aplDirective != null) {
+                    handlerInput.responseBuilder.addDirective(aplDirective)
+                }
                 return handlerInput.responseBuilder
-                    .addDirective(aplDirective)
                     .speak(requestAttributes.t('QUESTION_RESPONSE', chatResponseText))
                     .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
                     .getResponse();
-            }
+            } 
+            const [chatResponse] = await Promise.all([chatResponsePromise]);
+            const chatResponseData = await chatResponse.json();
+            chatResponseText = chatResponseData.choices[0].message.content;
+            console.log("Chat Response: " + chatResponseText);
+
             return handlerInput.responseBuilder
                 .speak(requestAttributes.t('QUESTION_RESPONSE', chatResponseText))
                 .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
                 .getResponse();
+            
         } catch (error) {
             console.log(error)
             return handlerInput.responseBuilder

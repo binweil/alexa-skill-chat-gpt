@@ -1,0 +1,119 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "chat g. p. t.",
+            "modelConfiguration": {
+                "fallbackIntentSensitivity": {
+                    "level": "MEDIUM"
+                }
+            },
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AskingQuestionIntent",
+                    "slots": [
+                        {
+                            "name": "user_input",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "give me {user_input}",
+                        "can you {user_input}",
+                        "how {user_input}",
+                        "why {user_input}",
+                        "what is {user_input}",
+                        "Tell me {user_input}",
+                        "jarvis.  {user_input}",
+                        "jarvis- {user_input}",
+                        "Javs {user_input}",
+                        "Javis {user_input}",
+                        "Jarvis {user_input}"
+                    ]
+                },
+                {
+                    "name": "BuySubsIntent",
+                    "slots": [
+                        {
+                            "name": "monthly_or_yearly",
+                            "type": "ISPName"
+                        }
+                    ],
+                    "samples": [
+                        "buy {monthly_or_yearly} subscriptions",
+                        "buy {monthly_or_yearly} subs",
+                        "buy {monthly_or_yearly} sub",
+                        "buy subscription",
+                        "buy {monthly_or_yearly} subscription"
+                    ]
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "CancelSubIntent",
+                    "slots": [
+                        {
+                            "name": "monthly_or_yearly",
+                            "type": "ISPName"
+                        }
+                    ],
+                    "samples": [
+                        "terminate {monthly_or_yearly} subscription",
+                        "refund {monthly_or_yearly} subscription",
+                        "cancel {monthly_or_yearly} subscription",
+                        "cancel subscription"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                }
+            ],
+            "types": [
+                {
+                    "name": "UserInput",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "user_input"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ISPName",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "billing_period",
+                                "synonyms": [
+                                    "month",
+                                    "year",
+                                    "monthly",
+                                    "yearly"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
