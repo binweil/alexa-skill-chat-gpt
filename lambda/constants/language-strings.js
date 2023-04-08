@@ -10,7 +10,7 @@ export const languageStringsEnglish = {
     QUESTION_RESPONSE: '%s',
     IMAGE_SEARCH_RESPONSE: "Here's the image I found.",
     CONTEXT_CLEAR_RESPONSE: "I have cleared the context. What topic do you want to chat about now?",
-    SUBSCRIPTION_UPSELL: "ChatGPT skill is free for the first three interactions." +
+    SUBSCRIPTION_UPSELL: "ChatGPT skill is free for the first three interactions. " +
         "Please say <break time=\'0.3s\'/> buy monthly subscription <break time=\'0.3s\'/> or " +
         "<break time=\'0.3s\'/> buy yearly subscription <break time=\'0.3s\'/> to get unlimited amount of access.",
     CONTINUE_MESSAGE: "What else do you want to chat about?",

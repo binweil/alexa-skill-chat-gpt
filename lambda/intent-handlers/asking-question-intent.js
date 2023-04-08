@@ -3,14 +3,30 @@ import AWS from "aws-sdk";
 import {getAPIDirective} from "./multi-modal-render.js";
 import {isUserEntitled} from "../utilities/util.js";
 import { chatCompletion, generateImage } from "../services/openai-service.js";
+import { addCount } from "../services/cloudwatch.js";
+import { ASKING_QUESTION_INTENT } from "../constants/cloudwatch-constants.js";
 
-function isProduct(product) {
-    return product != null;
-}
+const MAX_CHAT_CONTEXT = 6;
+const ASKING_QUESTION_INTENT_SLOT_KEY = "question";
 
-function isEntitled(product) {
-    return isProduct(product) &&
-        product[0].entitled === 'ENTITLED';
+function callDirectiveService(handlerInput) {
+    const requestEnvelope = handlerInput.requestEnvelope;
+    const directiveServiceClient = handlerInput.serviceClientFactory.getDirectiveServiceClient();
+
+    const requestId = requestEnvelope.request.requestId;
+    const endpoint = requestEnvelope.context.System.apiEndpoint;
+    const token = requestEnvelope.context.System.apiAccessToken;
+
+    const directive = {
+       header: {
+        requestId
+       },
+       directive: {
+        type: "VoicePlayer.Speak",
+        speech: "Thinking up a thoughtful response for you"
+       }
+    };
+    return directiveServiceClient.enqueue(directive, endpoint, token);
 }
 
 export const AskingQuestionIntent = {
@@ -19,17 +35,24 @@ export const AskingQuestionIntent = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AskingQuestionIntent';
     },
     async handle(handlerInput, aplQuestion) {
+        addCount(ASKING_QUESTION_INTENT);
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+
+        // Fetch Intent Input
         let question = aplQuestion;
         if (aplQuestion == null || question.length === 0) {
-            question = Alexa.getSlotValue(handlerInput.requestEnvelope, 'question');
+            question = Alexa.getSlotValue(handlerInput.requestEnvelope, ASKING_QUESTION_INTENT_SLOT_KEY);
         }
+
+        // Initialize Chat Context
         if (!sessionAttributes.chatHistory) {
             sessionAttributes.chatHistory = [];
         }
+
+        // Maximum 6 Chat Context
         sessionAttributes.chatHistory.push({"role": "user", "content": question});
-        if (sessionAttributes.chatHistory.length > 6) {
+        if (sessionAttributes.chatHistory.length > MAX_CHAT_CONTEXT) {
             sessionAttributes.chatHistory.shift();
             sessionAttributes.chatHistory.shift();
         }
@@ -43,6 +66,13 @@ export const AskingQuestionIntent = {
                 .getResponse();
         }
 
+        // Add Progressive Response
+        try {
+            await callDirectiveService(handlerInput);
+        } catch(err) {
+            console.error(err);
+        }
+
         let secretsManager = new AWS.SecretsManager({region: 'us-west-2'});
         const rawApiKey = await secretsManager.getSecretValue({SecretId: "chatgpt/apikey"}).promise();
         const apiKey = rawApiKey.SecretString;
@@ -54,11 +84,11 @@ export const AskingQuestionIntent = {
 
             // Image API Call
             if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
+                addCount(ASKING_QUESTION_INTENT, "Multi-Modal");
                 const imageResponsePromise = generateImage(question, apiKey);
                 const [imageResponse, chatResponse] = await Promise.all([imageResponsePromise, chatResponsePromise]);
                 
                 const chatResponseData = await chatResponse.json();
-                console.log(chatResponseData);
                 chatResponseText = chatResponseData.choices[0].message.content;
                 console.log("Chat Response: " + chatResponseText);
     
@@ -74,7 +104,8 @@ export const AskingQuestionIntent = {
                     .speak(requestAttributes.t('QUESTION_RESPONSE', chatResponseText))
                     .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
                     .getResponse();
-            } 
+            }
+            addCount(ASKING_QUESTION_INTENT, "Headless");
             const [chatResponse] = await Promise.all([chatResponsePromise]);
             const chatResponseData = await chatResponse.json();
             chatResponseText = chatResponseData.choices[0].message.content;
@@ -82,6 +113,7 @@ export const AskingQuestionIntent = {
 
             return handlerInput.responseBuilder
                 .speak(requestAttributes.t('QUESTION_RESPONSE', chatResponseText))
+                .addDirective()
                 .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
                 .getResponse();
             

@@ -1,5 +1,7 @@
 import Alexa from "ask-sdk";
-import CloudWatchClient from 'aws-sdk/clients/cloudwatch.js';
+import { FALL_BACK_INTENT } from "../constants/cloudwatch-constants.js";
+import { addCount } from "../services/cloudwatch.js";
+
 export const FallbackHandler = {
     canHandle(handlerInput) {
         // handle fallback intent, yes and no when playing a game
@@ -8,23 +10,10 @@ export const FallbackHandler = {
             && (Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent');
     },
     handle(handlerInput) {
+        addCount(FALL_BACK_INTENT);
         const { attributesManager } = handlerInput;
         const requestAttributes = attributesManager.getRequestAttributes();
-
-        const client = new CloudWatchClient({region: "us-west-2"});
-        client.putMetricData({
-            MetricData: [
-                {
-                    MetricName: "FallBack Intent",
-                    Dimensions: [{
-                        Name: "Count",
-                        Value: "Number",
-                    }],
-                    Unit: "Count",
-                    Value: 1.0
-                }
-            ]
-        })
+    
         return handlerInput.responseBuilder
             .speak(requestAttributes.t('FALLBACK_MESSAGE'))
             .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
