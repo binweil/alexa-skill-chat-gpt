@@ -20,9 +20,9 @@ function callDirectiveService(handlerInput) {
     const progressiveSpeechCandidates = [
         "Hang on! I am brewing an insightful response just for you.",
         "Thinking up a thoughtful response for you",
-        "Hold tight! I am delving into its knowledge vault to craft a personalized reply",
-        "Wait just a moment! I am concocting a delightful response, blending information and insight. Your answer is being mixed to perfection!",
-        "Stay tuned! I am on a mission to explore the depths of its knowledge to generate a meaningful response for you. I will be back in no time!"
+        "Hold tight!",
+        "Wait just a moment! Your answer is being mixed to perfection!",
+        "Stay tuned! I will be back in no time!"
     ];
 
     const directive = {
@@ -101,7 +101,10 @@ export const AskingQuestionIntent = {
                 console.log("Chat Response: " + chatResponseText);
     
                 const imageURLData = await imageResponse.json();
-                const imageURL = imageURLData.data[0].url
+                let imageURL = null;
+                if ((imageURLData != null) && (imageURLData.data != null) && (imageURLData.data.length > 0)) {
+                    imageURL = imageURLData.data[0].url
+                }
                 console.log("Image Response: " + imageURL);
 
                 const aplDirective = getAPIDirective(handlerInput, question, chatResponseText, imageURL);
@@ -121,12 +124,11 @@ export const AskingQuestionIntent = {
 
             return handlerInput.responseBuilder
                 .speak(requestAttributes.t('QUESTION_RESPONSE', chatResponseText))
-                .addDirective()
                 .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
                 .getResponse();
             
         } catch (error) {
-            console.log(error)
+            console.error(error);
             return handlerInput.responseBuilder
                 .speak(requestAttributes.t('OPENAI_ERROR_MESSAGE'))
                 .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
