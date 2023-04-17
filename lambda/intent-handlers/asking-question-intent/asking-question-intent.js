@@ -1,10 +1,10 @@
 import Alexa from "ask-sdk";
 import AWS from "aws-sdk";
 import {getAPIDirective} from "./multi-modal-render.js";
-import {isUserEntitled} from "../utilities/util.js";
-import { chatCompletion, generateImage } from "../services/openai-service.js";
-import { addCount } from "../services/cloudwatch.js";
-import { ASKING_QUESTION_INTENT } from "../constants/cloudwatch-constants.js";
+import {isUserEntitled} from "../../utilities/util.js";
+import { chatCompletion, generateImage } from "../../services/openai-service.js";
+import { addCount } from "../../services/cloudwatch.js";
+import { ASKING_QUESTION_INTENT, METRICS_ERROR } from "../../constants/cloudwatch-constants.js";
 
 const MAX_CHAT_CONTEXT = 6;
 const ASKING_QUESTION_INTENT_SLOT_KEY = "question";
@@ -92,7 +92,6 @@ export const AskingQuestionIntent = {
 
             // Image API Call
             if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
-                addCount(ASKING_QUESTION_INTENT, "Multi-Modal");
                 const imageResponsePromise = generateImage(question, apiKey);
                 const [imageResponse, chatResponse] = await Promise.all([imageResponsePromise, chatResponsePromise]);
                 
@@ -116,12 +115,13 @@ export const AskingQuestionIntent = {
                     .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
                     .getResponse();
             }
-            addCount(ASKING_QUESTION_INTENT, "Headless");
+            
             const [chatResponse] = await Promise.all([chatResponsePromise]);
             const chatResponseData = await chatResponse.json();
             chatResponseText = chatResponseData.choices[0].message.content;
             console.log("Chat Response: " + chatResponseText);
 
+            addCount(ASKING_QUESTION_INTENT, "Headless");
             return handlerInput.responseBuilder
                 .speak(requestAttributes.t('QUESTION_RESPONSE', chatResponseText))
                 .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
@@ -129,6 +129,7 @@ export const AskingQuestionIntent = {
             
         } catch (error) {
             console.error(error);
+            addCount(ASKING_QUESTION_INTENT, METRICS_ERROR);
             return handlerInput.responseBuilder
                 .speak(requestAttributes.t('OPENAI_ERROR_MESSAGE'))
                 .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))

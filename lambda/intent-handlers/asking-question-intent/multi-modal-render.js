@@ -1,5 +1,8 @@
 import Alexa from 'ask-sdk';
 import showdown from 'showdown';
+import xssfilter from 'showdown-xss-filter';
+import { METRICS_SUCCESS, METRICS_ERROR, ASKING_QUESTION_INTENT_MM } from '../../constants/cloudwatch-constants.js';
+import { addCount } from '../../services/cloudwatch.js';
 
 const DOCUMENT_ID = "VisualizeResponseText";
 
@@ -60,17 +63,20 @@ export function getAPIDirective(handlerInput, userInputText, responseText, image
                 requireSpaceBeforeHeadingText: true,
                 encodeEmails: false,
                 extensions: [
-                    xssFilter,
-                    //    showdownPrismjs
+                    xssfilter,
+                    // showdownPrismjs
                 ],
             };
 
             const converter = new showdown.Converter(options);
             markdownResponse = converter.makeHtml(responseText);
             console.log(markdownResponse);
+            addCount(ASKING_QUESTION_INTENT_MM, METRICS_SUCCESS);
         } catch (err) {
+            markdownResponse = responseText;
             console.error("Cannot parse response to html");
             console.error(err);
+            addCount(ASKING_QUESTION_INTENT_MM, METRICS_ERROR);
         }
 
         datasource.simpleTextTemplateData.properties.titleText = userInputText;

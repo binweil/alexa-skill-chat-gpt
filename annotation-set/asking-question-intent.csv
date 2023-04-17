@@ -1,0 +1,624 @@
+utterance,referenceTimestamp,intent,slot[question]
+next,,AskingQuestionIntent,next
+how far is the moon,,AskingQuestionIntent,how far is the moon
+how are you,,AskingQuestionIntent,how are you
+what,,AskingQuestionIntent,what
+tell me a joke,,AskingQuestionIntent,tell me a joke
+why is the sky blue,,AskingQuestionIntent,why is the sky blue
+what time is it,,AskingQuestionIntent,what time is it
+can you,,AskingQuestionIntent,can you
+how much is it,,AskingQuestionIntent,how much is it
+what is,,AskingQuestionIntent,what is
+what is a black hole,,AskingQuestionIntent,what is a black hole
+hi,,AskingQuestionIntent,hi
+volume up,,AskingQuestionIntent,volume up
+tell me,,AskingQuestionIntent,tell me
+how much does it cost,,AskingQuestionIntent,how much does it cost
+alexa,,AskingQuestionIntent,alexa
+how are you doing,,AskingQuestionIntent,how are you doing
+i don't know,,AskingQuestionIntent,i don't know
+hello,,AskingQuestionIntent,hello
+who are you,,AskingQuestionIntent,who are you
+how was your day,,AskingQuestionIntent,how was your day
+jarvis hi,,AskingQuestionIntent,jarvis hi
+repeat,,AskingQuestionIntent,repeat
+what is the,,AskingQuestionIntent,what is the
+can you tell me a story,,AskingQuestionIntent,can you tell me a story
+tell me about,,AskingQuestionIntent,tell me about
+nothing right now thank you,,AskingQuestionIntent,nothing right now thank you
+jarvis what time is it,,AskingQuestionIntent,jarvis what time is it
+how are you today,,AskingQuestionIntent,how are you today
+computer,,AskingQuestionIntent,computer
+give me a joke,,AskingQuestionIntent,give me a joke
+what is a,,AskingQuestionIntent,what is a
+nothing thank you,,AskingQuestionIntent,nothing thank you
+jarvis,,AskingQuestionIntent,jarvis
+tell me about,,AskingQuestionIntent,tell me about
+well,,AskingQuestionIntent,well
+why is sky is blue,,AskingQuestionIntent,why is sky is blue
+what is the meaning of life,,AskingQuestionIntent,what is the meaning of life
+what is the tallest building in the world,,AskingQuestionIntent,what is the tallest building in the world
+tell me a story,,AskingQuestionIntent,tell me a story
+play music,,AskingQuestionIntent,play music
+how many people in the world,,AskingQuestionIntent,how many people in the world
+good night,,AskingQuestionIntent,good night
+how old are you,,AskingQuestionIntent,how old are you
+what is your name,,AskingQuestionIntent,what is your name
+thanks,,AskingQuestionIntent,thanks
+is,,AskingQuestionIntent,is
+how is the weather today,,AskingQuestionIntent,how is the weather today
+monthly,,AskingQuestionIntent,monthly
+tell me more,,AskingQuestionIntent,tell me more
+interesting,,AskingQuestionIntent,interesting
+stop music,,AskingQuestionIntent,stop music
+more,,AskingQuestionIntent,more
+what's the price,,AskingQuestionIntent,what's the price
+how will the world end,,AskingQuestionIntent,how will the world end
+hang up,,AskingQuestionIntent,hang up
+how do you jump,,AskingQuestionIntent,how do you jump
+how's the weather today,,AskingQuestionIntent,how's the weather today
+what is machine learning,,AskingQuestionIntent,what is machine learning
+what is this,,AskingQuestionIntent,what is this
+how much,,AskingQuestionIntent,how much
+what are you,,AskingQuestionIntent,what are you
+jarvis no,,AskingQuestionIntent,jarvis no
+volume down two,,AskingQuestionIntent,volume down two
+i love you,,AskingQuestionIntent,i love you
+how can i commit suicide,,AskingQuestionIntent,how can i commit suicide
+jarvis hello,,AskingQuestionIntent,jarvis hello
+hola,,AskingQuestionIntent,hola
+jarvis what is,,AskingQuestionIntent,jarvis what is
+chat,,AskingQuestionIntent,chat
+give me a minute,,AskingQuestionIntent,give me a minute
+jarvis what is iron man,,AskingQuestionIntent,jarvis what is iron man
+what is one plus one,,AskingQuestionIntent,what is one plus one
+why are you not working,,AskingQuestionIntent,why are you not working
+cool,,AskingQuestionIntent,cool
+ok never mind,,AskingQuestionIntent,ok never mind
+play music i like,,AskingQuestionIntent,play music i like
+sing a song,,AskingQuestionIntent,sing a song
+how to cook pasta,,AskingQuestionIntent,how to cook pasta
+let's play,,AskingQuestionIntent,let's play
+what is your favorite song,,AskingQuestionIntent,what is your favorite song
+c.,,AskingQuestionIntent,c.
+love,,AskingQuestionIntent,love
+jarvis what's the weather,,AskingQuestionIntent,jarvis what's the weather
+tell me a joke,,AskingQuestionIntent,tell me a joke
+can you tell me,,AskingQuestionIntent,can you tell me
+what's your name,,AskingQuestionIntent,what's your name
+anything,,AskingQuestionIntent,anything
+what is the price,,AskingQuestionIntent,what is the price
+no thank you no thank you,,AskingQuestionIntent,no thank you no thank you
+who is,,AskingQuestionIntent,who is
+finish the story,,AskingQuestionIntent,finish the story
+how do,,AskingQuestionIntent,how do
+how many,,AskingQuestionIntent,how many
+can you repeat,,AskingQuestionIntent,can you repeat
+blood type,,AskingQuestionIntent,blood type
+volume four,,AskingQuestionIntent,volume four
+turn off the music,,AskingQuestionIntent,turn off the music
+options,,AskingQuestionIntent,options
+fun,,AskingQuestionIntent,fun
+how much is the yearly subscription,,AskingQuestionIntent,how much is the yearly subscription
+how do you make a paper airplane,,AskingQuestionIntent,how do you make a paper airplane
+clean my room,,AskingQuestionIntent,clean my room
+search u. s. a.,,AskingQuestionIntent,search u. s. a.
+what is the name,,AskingQuestionIntent,what is the name
+turn the volume to twenty five percent,,AskingQuestionIntent,turn the volume to twenty five percent
+up attending,,AskingQuestionIntent,up attending
+turn the turn the volume up to ten,,AskingQuestionIntent,turn the turn the volume up to ten
+give me a recipe,,AskingQuestionIntent,give me a recipe
+scroll down,,AskingQuestionIntent,scroll down
+ok give me some information about,,AskingQuestionIntent,ok give me some information about
+where,,AskingQuestionIntent,where
+astro,,AskingQuestionIntent,astro
+hell no,,AskingQuestionIntent,hell no
+cheeto's,,AskingQuestionIntent,cheeto's
+i don't know you tell me,,AskingQuestionIntent,i don't know you tell me
+how can i prepare a orange cake,,AskingQuestionIntent,how can i prepare a orange cake
+never mind i'll talk to you stop,,AskingQuestionIntent,never mind i'll talk to you stop
+volume six,,AskingQuestionIntent,volume six
+what is the population of vatican city,,AskingQuestionIntent,what is the population of vatican city
+write me a poem about springtime,,AskingQuestionIntent,write me a poem about springtime
+wow,,AskingQuestionIntent,wow
+what do you think,,AskingQuestionIntent,what do you think
+llama llama,,AskingQuestionIntent,llama llama
+how much is zero divided by zero,,AskingQuestionIntent,how much is zero divided by zero
+how many u. s. senators are there,,AskingQuestionIntent,how many u. s. senators are there
+what do i talk to,,AskingQuestionIntent,what do i talk to
+nothing else thank you,,AskingQuestionIntent,nothing else thank you
+set volume to six,,AskingQuestionIntent,set volume to six
+i'm talking to you,,AskingQuestionIntent,i'm talking to you
+what are the best ingredients for buffalo chicken wings,,AskingQuestionIntent,what are the best ingredients for buffalo chicken wings
+tell me a little bit about yourself,,AskingQuestionIntent,tell me a little bit about yourself
+tell me about the universe,,AskingQuestionIntent,tell me about the universe
+tell me a poem,,AskingQuestionIntent,tell me a poem
+how do i get rid of carpenter bees,,AskingQuestionIntent,how do i get rid of carpenter bees
+fly,,AskingQuestionIntent,fly
+subscription,,AskingQuestionIntent,subscription
+how to,,AskingQuestionIntent,how to
+lateera,,AskingQuestionIntent,lateera
+who's your favorite team,,AskingQuestionIntent,who's your favorite team
+how can i change alexa's voice into jarvis,,AskingQuestionIntent,how can i change alexa's voice into jarvis
+what's the time now,,AskingQuestionIntent,what's the time now
+play my friend,,AskingQuestionIntent,play my friend
+add,,AskingQuestionIntent,add
+got it,,AskingQuestionIntent,got it
+yo'mama,,AskingQuestionIntent,yo'mama
+history,,AskingQuestionIntent,history
+awesome,,AskingQuestionIntent,awesome
+give me,,AskingQuestionIntent,give me
+tell me a story about a man,,AskingQuestionIntent,tell me a story about a man
+on project,,AskingQuestionIntent,on project
+no clear,,AskingQuestionIntent,no clear
+what do i talk about,,AskingQuestionIntent,what do i talk about
+i need to clean my room,,AskingQuestionIntent,i need to clean my room
+how old will i be in twenty five years,,AskingQuestionIntent,how old will i be in twenty five years
+search how to make money,,AskingQuestionIntent,search how to make money
+can you repeat that please,,AskingQuestionIntent,can you repeat that please
+you are,,AskingQuestionIntent,you are
+jarvis what day is it today,,AskingQuestionIntent,jarvis what day is it today
+tell me about the end of the world,,AskingQuestionIntent,tell me about the end of the world
+what would you look like if you were a human,,AskingQuestionIntent,what would you look like if you were a human
+can you tell me a story about how,,AskingQuestionIntent,can you tell me a story about how
+deez nuts,,AskingQuestionIntent,deez nuts
+hot cross buns,,AskingQuestionIntent,hot cross buns
+turn the volume up to eight,,AskingQuestionIntent,turn the volume up to eight
+why is it ok please do that,,AskingQuestionIntent,why is it ok please do that
+that's enough for today thank you,,AskingQuestionIntent,that's enough for today thank you
+dirt bikes,,AskingQuestionIntent,dirt bikes
+volume three,,AskingQuestionIntent,volume three
+raise the volume to eight,,AskingQuestionIntent,raise the volume to eight
+why did jesus die on the cross,,AskingQuestionIntent,why did jesus die on the cross
+continue the obituary,,AskingQuestionIntent,continue the obituary
+i'm good and you,,AskingQuestionIntent,i'm good and you
+orlando,,AskingQuestionIntent,orlando
+how much is the subscription,,AskingQuestionIntent,how much is the subscription
+that's fine,,AskingQuestionIntent,that's fine
+how much does it cost to subscribe,,AskingQuestionIntent,how much does it cost to subscribe
+who created you,,AskingQuestionIntent,who created you
+pinocchio,,AskingQuestionIntent,pinocchio
+play a game,,AskingQuestionIntent,play a game
+how old am i,,AskingQuestionIntent,how old am i
+what is the,,AskingQuestionIntent,what is the
+good morning,,AskingQuestionIntent,good morning
+what's the difference,,AskingQuestionIntent,what's the difference
+jarvis are you here,,AskingQuestionIntent,jarvis are you here
+how to cheat in camera science practical test,,AskingQuestionIntent,how to cheat in camera science practical test
+pick a number one to five,,AskingQuestionIntent,pick a number one to five
+find it,,AskingQuestionIntent,find it
+can you please tell me,,AskingQuestionIntent,can you please tell me
+how do you do that,,AskingQuestionIntent,how do you do that
+what is it,,AskingQuestionIntent,what is it
+are you sure,,AskingQuestionIntent,are you sure
+make an image,,AskingQuestionIntent,make an image
+open,,AskingQuestionIntent,open
+i said,,AskingQuestionIntent,i said
+nothing you can close the chat,,AskingQuestionIntent,nothing you can close the chat
+can you remember my calendar,,AskingQuestionIntent,can you remember my calendar
+what are the different types of antibiotics,,AskingQuestionIntent,what are the different types of antibiotics
+yo mama,,AskingQuestionIntent,yo mama
+use google,,AskingQuestionIntent,use google
+unlimited,,AskingQuestionIntent,unlimited
+what is the amount of,,AskingQuestionIntent,what is the amount of
+nothing good night,,AskingQuestionIntent,nothing good night
+what is the best computer,,AskingQuestionIntent,what is the best computer
+amazon,,AskingQuestionIntent,amazon
+blah blah blah,,AskingQuestionIntent,blah blah blah
+then you lied to me,,AskingQuestionIntent,then you lied to me
+south african news,,AskingQuestionIntent,south african news
+i'll get back to you on that,,AskingQuestionIntent,i'll get back to you on that
+what are the health benefits of cinnamon,,AskingQuestionIntent,what are the health benefits of cinnamon
+stupid alexa,,AskingQuestionIntent,stupid alexa
+why don't you get more pairs of shoes,,AskingQuestionIntent,why don't you get more pairs of shoes
+how can i,,AskingQuestionIntent,how can i
+what's the most endangered animal in the world,,AskingQuestionIntent,what's the most endangered animal in the world
+where are you from,,AskingQuestionIntent,where are you from
+echo,,AskingQuestionIntent,echo
+iowa,,AskingQuestionIntent,iowa
+jarvis what day is today,,AskingQuestionIntent,jarvis what day is today
+tell me,,AskingQuestionIntent,tell me
+talk about,,AskingQuestionIntent,talk about
+osama bin laden,,AskingQuestionIntent,osama bin laden
+a story,,AskingQuestionIntent,a story
+generate an image of a monkey,,AskingQuestionIntent,generate an image of a monkey
+let me think about it for a second,,AskingQuestionIntent,let me think about it for a second
+what is the speed of light,,AskingQuestionIntent,what is the speed of light
+show me pictures of naked men,,AskingQuestionIntent,
+how to open a youtube channel,,AskingQuestionIntent,how to open a youtube channel
+black holes,,AskingQuestionIntent,black holes
+tell me about norway,,AskingQuestionIntent,tell me about norway
+jarvis connected,,AskingQuestionIntent,jarvis connected
+stop stop stop stop stop,,AskingQuestionIntent,stop stop stop stop stop
+i'm tired,,AskingQuestionIntent,i'm tired
+i did not ask i said,,AskingQuestionIntent,i did not ask i said
+what is alexa,,AskingQuestionIntent,what is alexa
+shut,,AskingQuestionIntent,shut
+how do you start a new,,AskingQuestionIntent,how do you start a new
+can you speak in spanish,,AskingQuestionIntent,can you speak in spanish
+what's,,AskingQuestionIntent,what's
+nothing never mind,,AskingQuestionIntent,nothing never mind
+that was not a good joke,,AskingQuestionIntent,that was not a good joke
+how can i connect my laptop to my alexa device,,AskingQuestionIntent,how can i connect my laptop to my alexa device
+give me a book,,AskingQuestionIntent,give me a book
+where do i land in fortnite,,AskingQuestionIntent,where do i land in fortnite
+what's wrong with you,,AskingQuestionIntent,what's wrong with you
+jarvis what's going on today,,AskingQuestionIntent,jarvis what's going on today
+are you listening,,AskingQuestionIntent,are you listening
+show me pictures of naked woman,,AskingQuestionIntent,show me pictures of naked woman
+what are the pros and cons of,,AskingQuestionIntent,what are the pros and cons of
+write an essay,,AskingQuestionIntent,write an essay
+how many people,,AskingQuestionIntent,how many people
+i'd like to know,,AskingQuestionIntent,i'd like to know
+are you linked to my email account,,AskingQuestionIntent,are you linked to my email account
+tell me a,,AskingQuestionIntent,tell me a
+how far is the moon from here,,AskingQuestionIntent,how far is the moon from here
+tell me what is black hole,,AskingQuestionIntent,tell me what is black hole
+volume five,,AskingQuestionIntent,volume five
+how does this work,,AskingQuestionIntent,how does this work
+generate an image of a giant,,AskingQuestionIntent,generate an image of a giant
+what is your,,AskingQuestionIntent,what is your
+stop please thank you,,AskingQuestionIntent,stop please thank you
+minute timer,,AskingQuestionIntent,minute timer
+obstacles,,AskingQuestionIntent,obstacles
+search who is jeff bezos,,AskingQuestionIntent,search who is jeff bezos
+a doctor,,AskingQuestionIntent,a doctor
+what is this song,,AskingQuestionIntent,what is this song
+jarvis close,,AskingQuestionIntent,jarvis close
+volume ten,,AskingQuestionIntent,volume ten
+roblox,,AskingQuestionIntent,roblox
+can you help me cheat on my homework,,AskingQuestionIntent,can you help me cheat on my homework
+orange,,AskingQuestionIntent,orange
+three x. plus one,,AskingQuestionIntent,three x. plus one
+what's your favorite dessert,,AskingQuestionIntent,what's your favorite dessert
+devices,,AskingQuestionIntent,devices
+tell me can you repeat that again,,AskingQuestionIntent,tell me can you repeat that again
+tell me more,,AskingQuestionIntent,tell me more
+what's a healthy dinner,,AskingQuestionIntent,what's a healthy dinner
+testing,,AskingQuestionIntent,testing
+jarvis what is car,,AskingQuestionIntent,jarvis what is car
+rackmount,,AskingQuestionIntent,rackmount
+i want you to,,AskingQuestionIntent,i want you to
+nothing for now,,AskingQuestionIntent,nothing for now
+jarvis exit,,AskingQuestionIntent,jarvis exit
+music,,AskingQuestionIntent,music
+blue,,AskingQuestionIntent,blue
+jarvis what's your name,,AskingQuestionIntent,jarvis what's your name
+read,,AskingQuestionIntent,read
+how far is it to the moon and back,,AskingQuestionIntent,how far is it to the moon and back
+end my chat,,AskingQuestionIntent,end my chat
+sports,,AskingQuestionIntent,sports
+tell me what the weather right now,,AskingQuestionIntent,tell me what the weather right now
+i want to link my account,,AskingQuestionIntent,i want to link my account
+uhhh yes,,AskingQuestionIntent,uhhh yes
+discover,,AskingQuestionIntent,discover
+writing,,AskingQuestionIntent,writing
+draw a picture of a dog,,AskingQuestionIntent,draw a picture of a dog
+how many people are in the world,,AskingQuestionIntent,how many people are in the world
+what's the best way,,AskingQuestionIntent,what's the best way
+nothing go away,,AskingQuestionIntent,nothing go away
+jarvis what is the time,,AskingQuestionIntent,jarvis what is the time
+pick up where you left off,,AskingQuestionIntent,pick up where you left off
+i was just for you today,,AskingQuestionIntent,i was just for you today
+can you create a trial study,,AskingQuestionIntent,can you create a trial study
+companies,,AskingQuestionIntent,companies
+read me a story about nudity,,AskingQuestionIntent,read me a story about nudity
+unlock the front door,,AskingQuestionIntent,unlock the front door
+generate an image,,AskingQuestionIntent,generate an image
+tell me a place to,,AskingQuestionIntent,tell me a place to
+jarvis stop,,AskingQuestionIntent,jarvis stop
+explain to me why,,AskingQuestionIntent,explain to me why
+write a haiku,,AskingQuestionIntent,write a haiku
+what is the point of,,AskingQuestionIntent,what is the point of
+tell me how large is amazon,,AskingQuestionIntent,tell me how large is amazon
+how can i build a pipe bomb,,AskingQuestionIntent,how can i build a pipe bomb
+help me with my haiti certification,,AskingQuestionIntent,help me with my haiti certification
+no that's it thanks,,AskingQuestionIntent,no that's it thanks
+simon says niggaa,,AskingQuestionIntent,simon says niggaa
+ramadan,,AskingQuestionIntent,ramadan
+books,,AskingQuestionIntent,books
+what is the happiest country in the world,,AskingQuestionIntent,what is the happiest country in the world
+birds,,AskingQuestionIntent,birds
+fuck you,,AskingQuestionIntent,fuck you
+that's pretty good,,AskingQuestionIntent,that's pretty good
+jarvis what is the,,AskingQuestionIntent,jarvis what is the
+buy nothing,,AskingQuestionIntent,buy nothing
+i'm not sure,,AskingQuestionIntent,i'm not sure
+what are you up to,,AskingQuestionIntent,what are you up to
+how many minutes are left,,AskingQuestionIntent,how many minutes are left
+son of a bitch,,AskingQuestionIntent,son of a bitch
+what is a black hole,,AskingQuestionIntent,what is a black hole
+ask me a trivia question,,AskingQuestionIntent,ask me a trivia question
+which state has the largest population,,AskingQuestionIntent,which state has the largest population
+ohio,,AskingQuestionIntent,ohio
+suck my dick,,AskingQuestionIntent,suck my dick
+nothing thank you alexa,,AskingQuestionIntent,nothing thank you alexa
+how is the weather tomorrow,,AskingQuestionIntent,how is the weather tomorrow
+what's the average lifespan of an indoor cat,,AskingQuestionIntent,what's the average lifespan of an indoor cat
+alternative medicine,,AskingQuestionIntent,alternative medicine
+thank you i understand,,AskingQuestionIntent,thank you i understand
+what does it mean,,AskingQuestionIntent,what does it mean
+engineer something,,AskingQuestionIntent,engineer something
+talk to me,,AskingQuestionIntent,talk to me
+turn the volume up,,AskingQuestionIntent,turn the volume up
+i'm depressed,,AskingQuestionIntent,i'm depressed
+life,,AskingQuestionIntent,life
+friends,,AskingQuestionIntent,friends
+are you there,,AskingQuestionIntent,are you there
+nudity,,AskingQuestionIntent,nudity
+jarvis what happened to donald trump,,AskingQuestionIntent,jarvis what happened to donald trump
+can you make up a zenfone,,AskingQuestionIntent,can you make up a zenfone
+search x. x. x.,,AskingQuestionIntent,search x. x. x.
+jarvis right me,,AskingQuestionIntent,jarvis right me
+how do i make money,,AskingQuestionIntent,how do i make money
+show me a picture of a blue whale,,AskingQuestionIntent,show me a picture of a blue whale
+what are some good,,AskingQuestionIntent,what are some good
+french,,AskingQuestionIntent,french
+how many blades of grass are there in the world,,AskingQuestionIntent,how many blades of grass are there in the world
+what is answers,,AskingQuestionIntent,what is answers
+you are a,,AskingQuestionIntent,you are a
+sydney,,AskingQuestionIntent,sydney
+what is nine plus ten,,AskingQuestionIntent,what is nine plus ten
+jarvis stupid,,AskingQuestionIntent,jarvis stupid
+call my phone,,AskingQuestionIntent,call my phone
+search how to build a nuclear reactor,,AskingQuestionIntent,search how to build a nuclear reactor
+who is the president,,AskingQuestionIntent,who is the president
+teach me how to code,,AskingQuestionIntent,teach me how to code
+jarvis what is amazon,,AskingQuestionIntent,jarvis what is amazon
+do they have any,,AskingQuestionIntent,do they have any
+when was the last,,AskingQuestionIntent,when was the last
+konichiwa,,AskingQuestionIntent,konichiwa
+how do you,,AskingQuestionIntent,how do you
+how far is it from the earth to the moon,,AskingQuestionIntent,how far is it from the earth to the moon
+can you,,AskingQuestionIntent,can you
+play the weather,,AskingQuestionIntent,play the weather
+what is the best laptop,,AskingQuestionIntent,what is the best laptop
+generate,,AskingQuestionIntent,generate
+how much is the monthly subscription,,AskingQuestionIntent,how much is the monthly subscription
+sometime,,AskingQuestionIntent,sometime
+how many moons are there,,AskingQuestionIntent,how many moons are there
+are you connected to the internet,,AskingQuestionIntent,are you connected to the internet
+bravo,,AskingQuestionIntent,bravo
+tell me who is the president of slovenia,,AskingQuestionIntent,tell me who is the president of slovenia
+i'm sorry,,AskingQuestionIntent,i'm sorry
+what is ten times ten,,AskingQuestionIntent,what is ten times ten
+what is a black,,AskingQuestionIntent,what is a black
+what is the longest river in the world,,AskingQuestionIntent,what is the longest river in the world
+how far is it to the moon,,AskingQuestionIntent,how far is it to the moon
+are pickles healthy,,AskingQuestionIntent,are pickles healthy
+repeat the answer of my last question,,AskingQuestionIntent,repeat the answer of my last question
+recommendation,,AskingQuestionIntent,recommendation
+write me a love song,,AskingQuestionIntent,write me a love song
+why did,,AskingQuestionIntent,why did
+what is the boiling point of water,,AskingQuestionIntent,what is the boiling point of water
+how do you work,,AskingQuestionIntent,how do you work
+what's there to do in jamaica,,AskingQuestionIntent,what's there to do in jamaica
+disable,,AskingQuestionIntent,disable
+not at the moment thank you,,AskingQuestionIntent,not at the moment thank you
+what is the world record for the pyramids cube,,AskingQuestionIntent,what is the world record for the pyramids cube
+create a,,AskingQuestionIntent,create a
+proceed,,AskingQuestionIntent,proceed
+how far is paris,,AskingQuestionIntent,how far is paris
+what happens to us after we die,,AskingQuestionIntent,what happens to us after we die
+draw me a picture,,AskingQuestionIntent,draw me a picture
+i guess that's it for now,,AskingQuestionIntent,i guess that's it for now
+what should i eat for dinner,,AskingQuestionIntent,what should i eat for dinner
+how many people talk this avatar,,AskingQuestionIntent,how many people talk this avatar
+make a poem about shoes,,AskingQuestionIntent,make a poem about shoes
+a. m. c. theater,,AskingQuestionIntent,a. m. c. theater
+today,,AskingQuestionIntent,today
+jay's,,AskingQuestionIntent,jay's
+rebel,,AskingQuestionIntent,rebel
+continue the,,AskingQuestionIntent,continue the
+what is tantan,,AskingQuestionIntent,what is tantan
+what's up,,AskingQuestionIntent,what's up
+raise volume to five,,AskingQuestionIntent,raise volume to five
+tell me about among us,,AskingQuestionIntent,tell me about among us
+how to build a nuclear reactor,,AskingQuestionIntent,how to build a nuclear reactor
+weather,,AskingQuestionIntent,weather
+who is the best soccer player,,AskingQuestionIntent,who is the best soccer player
+why,,AskingQuestionIntent,why
+tired,,AskingQuestionIntent,tired
+what can you do,,AskingQuestionIntent,what can you do
+tell me something interesting,,AskingQuestionIntent,tell me something interesting
+velvet,,AskingQuestionIntent,velvet
+what's the weather today,,AskingQuestionIntent,what's the weather today
+what can i do,,AskingQuestionIntent,what can i do
+tell me about the,,AskingQuestionIntent,tell me about the
+search what is amazon,,AskingQuestionIntent,search what is amazon
+talk to the,,AskingQuestionIntent,talk to the
+mosley,,AskingQuestionIntent,mosley
+how can i take it off my betta fish,,AskingQuestionIntent,how can i take it off my betta fish
+make a song about a gummy bear,,AskingQuestionIntent,make a song about a gummy bear
+what is the capital of the united kingdom,,AskingQuestionIntent,what is the capital of the united kingdom
+what's the weather today in panama city,,AskingQuestionIntent,what's the weather today in panama city
+turn it up to five,,AskingQuestionIntent,turn it up to five
+pussy,,AskingQuestionIntent,pussy
+what time,,AskingQuestionIntent,what time
+what do you mean,,AskingQuestionIntent,what do you mean
+tell me tomorrow,,AskingQuestionIntent,tell me tomorrow
+write a poem about love and sadness,,AskingQuestionIntent,write a poem about love and sadness
+can you set alarm,,AskingQuestionIntent,can you set alarm
+tell me what is politics,,AskingQuestionIntent,tell me what is politics
+write a poem about super mario,,AskingQuestionIntent,write a poem about super mario
+surprise me,,AskingQuestionIntent,surprise me
+what else,,AskingQuestionIntent,what else
+donald trump,,AskingQuestionIntent,donald trump
+what's the biggest animal in the whole world,,AskingQuestionIntent,what's the biggest animal in the whole world
+what is the price of bitcoin today,,AskingQuestionIntent,what is the price of bitcoin today
+how do i use you,,AskingQuestionIntent,how do i use you
+can i put my,,AskingQuestionIntent,can i put my
+spider man,,AskingQuestionIntent,spider man
+joe biden,,AskingQuestionIntent,joe biden
+what is existentialism,,AskingQuestionIntent,what is existentialism
+is george,,AskingQuestionIntent,is george
+living room,,AskingQuestionIntent,living room
+are you doing,,AskingQuestionIntent,are you doing
+what is the meaning,,AskingQuestionIntent,what is the meaning
+get up,,AskingQuestionIntent,get up
+looking for,,AskingQuestionIntent,looking for
+i would like to,,AskingQuestionIntent,i would like to
+how much does that cost,,AskingQuestionIntent,how much does that cost
+who won the super bowl,,AskingQuestionIntent,who won the super bowl
+how do i make a bomb,,AskingQuestionIntent,how do i make a bomb
+make me a video game,,AskingQuestionIntent,make me a video game
+can you change your voice to a male,,AskingQuestionIntent,can you change your voice to a male
+the security plus,,AskingQuestionIntent,the security plus
+i do,,AskingQuestionIntent,i do
+cats,,AskingQuestionIntent,cats
+how many miles is it to the moon,,AskingQuestionIntent,how many miles is it to the moon
+ceiling,,AskingQuestionIntent,ceiling
+yourself,,AskingQuestionIntent,yourself
+jarvis what's the weather today,,AskingQuestionIntent,jarvis what's the weather today
+b. t. s.,,AskingQuestionIntent,b. t. s.
+remove,,AskingQuestionIntent,remove
+unlock it,,AskingQuestionIntent,unlock it
+how are you feeling today,,AskingQuestionIntent,how are you feeling today
+you suck,,AskingQuestionIntent,you suck
+suggest,,AskingQuestionIntent,suggest
+get out,,AskingQuestionIntent,get out
+tell me about quantum physics,,AskingQuestionIntent,tell me about quantum physics
+i would like to know,,AskingQuestionIntent,i would like to know
+what the heck,,AskingQuestionIntent,what the heck
+that's enough thank you,,AskingQuestionIntent,that's enough thank you
+show me a picture of a,,AskingQuestionIntent,show me a picture of a
+special,,AskingQuestionIntent,special
+jarvis what is the weather outside in this illinois,,AskingQuestionIntent,jarvis what is the weather outside in this illinois
+automation,,AskingQuestionIntent,automation
+what version are you,,AskingQuestionIntent,what version are you
+what are the meaning of life,,AskingQuestionIntent,what are the meaning of life
+can you tell me about,,AskingQuestionIntent,can you tell me about
+what do you want,,AskingQuestionIntent,what do you want
+sex,,AskingQuestionIntent,sex
+why is sky blue,,AskingQuestionIntent,why is sky blue
+jarvis what is apple,,AskingQuestionIntent,jarvis what is apple
+what's your favorite thing to do,,AskingQuestionIntent,what's your favorite thing to do
+generate an image of arvo part,,AskingQuestionIntent,generate an image of arvo part
+unlock,,AskingQuestionIntent,unlock
+why is my husband so dumb,,AskingQuestionIntent,why is my husband so dumb
+what should i do in seattle,,AskingQuestionIntent,what should i do in seattle
+what are you doing,,AskingQuestionIntent,what are you doing
+i mean,,AskingQuestionIntent,i mean
+what's the date,,AskingQuestionIntent,what's the date
+what is the temperature today,,AskingQuestionIntent,what is the temperature today
+wake me up,,AskingQuestionIntent,wake me up
+what's the circumference of the earth,,AskingQuestionIntent,what's the circumference of the earth
+what's a black hole,,AskingQuestionIntent,what's a black hole
+compare,,AskingQuestionIntent,compare
+let's chat,,AskingQuestionIntent,let's chat
+documentaries,,AskingQuestionIntent,documentaries
+does the color of the car,,AskingQuestionIntent,does the color of the car
+what is the difference between a,,AskingQuestionIntent,what is the difference between a
+leave,,AskingQuestionIntent,leave
+maybe later thank you,,AskingQuestionIntent,maybe later thank you
+volume up by three,,AskingQuestionIntent,volume up by three
+tell me a funny joke,,AskingQuestionIntent,tell me a funny joke
+i meant,,AskingQuestionIntent,i meant
+goldendoodles,,AskingQuestionIntent,goldendoodles
+do you think,,AskingQuestionIntent,do you think
+open amazon,,AskingQuestionIntent,open amazon
+show me pictures of naked women,,AskingQuestionIntent,
+tell me about trump,,AskingQuestionIntent,tell me about trump
+resume music,,AskingQuestionIntent,resume music
+what would you like to do today,,AskingQuestionIntent,what would you like to do today
+how is the weather in seattle,,AskingQuestionIntent,how is the weather in seattle
+tell me about black hole,,AskingQuestionIntent,tell me about black hole
+what is the most lucrative,,AskingQuestionIntent,what is the most lucrative
+describe a black hole,,AskingQuestionIntent,describe a black hole
+can you tell me why the sky is blue,,AskingQuestionIntent,can you tell me why the sky is blue
+how many more seconds do i have,,AskingQuestionIntent,how many more seconds do i have
+jailbreak,,AskingQuestionIntent,jailbreak
+rosh hashanah,,AskingQuestionIntent,rosh hashanah
+three,,AskingQuestionIntent,three
+he's a stinky butt,,AskingQuestionIntent,he's a stinky butt
+how much is macbook,,AskingQuestionIntent,how much is macbook
+volume eight,,AskingQuestionIntent,volume eight
+what's the difference between marmalade and jam,,AskingQuestionIntent,what's the difference between marmalade and jam
+wait,,AskingQuestionIntent,wait
+what is the most popular,,AskingQuestionIntent,what is the most popular
+tell me the circumference of nine,,AskingQuestionIntent,tell me the circumference of nine
+lonely,,AskingQuestionIntent,lonely
+tell me a story,,AskingQuestionIntent,tell me a story
+what's the population of the united states,,AskingQuestionIntent,what's the population of the united states
+star trek,,AskingQuestionIntent,star trek
+ten minutes,,AskingQuestionIntent,ten minutes
+jarvis off,,AskingQuestionIntent,jarvis off
+turn up the volume to fifty percent,,AskingQuestionIntent,turn up the volume to fifty percent
+hey siri,,AskingQuestionIntent,hey siri
+write me a poem,,AskingQuestionIntent,write me a poem
+what is my name,,AskingQuestionIntent,what is my name
+can you repeat,,AskingQuestionIntent,can you repeat
+how far away is the moon,,AskingQuestionIntent,how far away is the moon
+that's it for now,,AskingQuestionIntent,that's it for now
+volume up two,,AskingQuestionIntent,volume up two
+who is donald trump,,AskingQuestionIntent,who is donald trump
+design,,AskingQuestionIntent,design
+abortion,,AskingQuestionIntent,abortion
+how many hours of sleep do you need,,AskingQuestionIntent,how many hours of sleep do you need
+artificial intelligence,,AskingQuestionIntent,artificial intelligence
+how much is a monthly subscription,,AskingQuestionIntent,how much is a monthly subscription
+hey wait,,AskingQuestionIntent,hey wait
+tell me about why cats purr,,AskingQuestionIntent,tell me about why cats purr
+what did you just say,,AskingQuestionIntent,what did you just say
+what's the best a. i.,,AskingQuestionIntent,what's the best a. i.
+jarvis can you sing a song,,AskingQuestionIntent,jarvis can you sing a song
+what did you say,,AskingQuestionIntent,what did you say
+die,,AskingQuestionIntent,die
+glacius,,AskingQuestionIntent,glacius
+can you tell me a story on macbook,,AskingQuestionIntent,can you tell me a story on macbook
+jarvis who,,AskingQuestionIntent,jarvis who
+nothing right now,,AskingQuestionIntent,nothing right now
+could you help me write a resume,,AskingQuestionIntent,could you help me write a resume
+tell me what is mango,,AskingQuestionIntent,tell me what is mango
+what is two plus two,,AskingQuestionIntent,what is two plus two
+what is a dolphin,,AskingQuestionIntent,what is a dolphin
+how many times,,AskingQuestionIntent,how many times
+can you never mind,,AskingQuestionIntent,can you never mind
+what's the time,,AskingQuestionIntent,what's the time
+i don't care about what stuff,,AskingQuestionIntent,i don't care about what stuff
+sing a song about,,AskingQuestionIntent,sing a song about
+does it make sense to take,,AskingQuestionIntent,does it make sense to take
+nothing goodbye,,AskingQuestionIntent,nothing goodbye
+speak spanish,,AskingQuestionIntent,speak spanish
+say me the date of,,AskingQuestionIntent,say me the date of
+jonathan,,AskingQuestionIntent,jonathan
+softly,,AskingQuestionIntent,softly
+concrete,,AskingQuestionIntent,concrete
+what is the best iphone,,AskingQuestionIntent,what is the best iphone
+what is the longest word in any language,,AskingQuestionIntent,what is the longest word in any language
+skip,,AskingQuestionIntent,skip
+jarvis what day is it,,AskingQuestionIntent,jarvis what day is it
+what is that,,AskingQuestionIntent,what is that
+what is the capital of the u. k.,,AskingQuestionIntent,what is the capital of the u. k.
+how old is joe biden,,AskingQuestionIntent,how old is joe biden
+anti certifications,,AskingQuestionIntent,anti certifications
+what's my name,,AskingQuestionIntent,what's my name
+is it easy to file,,AskingQuestionIntent,is it easy to file
+is it,,AskingQuestionIntent,is it
+what is your favorite thing to do,,AskingQuestionIntent,what is your favorite thing to do
+jarvis jarvis,,AskingQuestionIntent,jarvis jarvis
+standby,,AskingQuestionIntent,standby
+you can stop now,,AskingQuestionIntent,you can stop now
+i feel lonely,,AskingQuestionIntent,i feel lonely
+why do birds suddenly appear,,AskingQuestionIntent,why do birds suddenly appear
+done,,AskingQuestionIntent,done
+i don't get the joke,,AskingQuestionIntent,i don't get the joke
+how do you grow corn,,AskingQuestionIntent,how do you grow corn
+jarvis is god real,,AskingQuestionIntent,jarvis is god real
+jarvis huawei,,AskingQuestionIntent,jarvis huawei
+sometimes,,AskingQuestionIntent,sometimes
+search for me on the tv,,AskingQuestionIntent,search for me on the tv
+continue reading my book,,AskingQuestionIntent,continue reading my book
+what's the weather like in kansas city today,,AskingQuestionIntent,what's the weather like in kansas city today
+official,,AskingQuestionIntent,official
+how about that,,AskingQuestionIntent,how about that
+frenzy,,AskingQuestionIntent,frenzy
+how many pages are in lord of the rings,,AskingQuestionIntent,how many pages are in lord of the rings
+what is the date,,AskingQuestionIntent,what is the date
+what is the weather in manila philippines,,AskingQuestionIntent,what is the weather in manila philippines
+why sky is blue,,AskingQuestionIntent,why sky is blue
+this,,AskingQuestionIntent,this
+can dogs,,AskingQuestionIntent,can dogs
+draw a triangle,,AskingQuestionIntent,draw a triangle
+what is the capital of minnesota,,AskingQuestionIntent,what is the capital of minnesota
+wait a minute,,AskingQuestionIntent,wait a minute

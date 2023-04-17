@@ -1,6 +1,6 @@
 import {LaunchRequest} from "./launch-request.js";
 import {HelpIntent} from "./help-intent.js";
-import {AskingQuestionIntent} from "./asking-question-intent.js";
+import {AskingQuestionIntent} from "./asking-question-intent/asking-question-intent.js";
 import Alexa from "ask-sdk";
 import {ImageSearchIntent} from "./image-search-intent.js";
 import {BuySubsIntent} from "./buy-subs-intent.js";

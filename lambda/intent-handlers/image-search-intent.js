@@ -1,7 +1,7 @@
 import Alexa from "ask-sdk";
 import AWS from "aws-sdk";
 import {ChatGPTAPI, openai} from "chatgpt";
-import {getAPIDirective} from "./multi-modal-render.js";
+import {getAPIDirective} from "./asking-question-intent/multi-modal-render.js";
 import {isUserEntitled} from "../utilities/util.js";
 
 const DOCUMENT_ID = "SearchImageScreen";

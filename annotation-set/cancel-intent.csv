@@ -1,0 +1,4 @@
+utteranceText,referenceTimestamp,intent
+cancel,,AMAZON.CancelIntent,
+nothing,,AMAZON.CancelIntent,
+never mind,,AMAZON.CancelIntent,

@@ -1,5 +1,5 @@
 import Alexa from 'ask-sdk';
-import {AskingQuestionIntent} from "./intent-handlers/asking-question-intent.js";
+import {AskingQuestionIntent} from "./intent-handlers/asking-question-intent/asking-question-intent.js";
 import {BuySubsIntent} from "./intent-handlers/buy-subs-intent.js";
 import {LaunchRequest} from "./intent-handlers/launch-request.js";
 import {ExitHandler} from "./intent-handlers/exit-handler.js";
@@ -29,9 +29,9 @@ export const handler = skillBuilder
         YesIntentHandler,
         NoIntentHandler,
         ExitHandler,
-        SessionEndedRequest,
         APLUserEventHandler,
         FallbackHandler,
+        SessionEndedRequest,
         UnhandledIntent
     )
     .addRequestInterceptors(LocalizationInterceptor)

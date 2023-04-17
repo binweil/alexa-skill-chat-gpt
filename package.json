@@ -1,14 +1,14 @@
 {
-  "name": "skill-sample-nodejs-highlowgame",
-  "version": "2.6.0",
-  "description": "High-low number guessing game for Alexa (i18n)",
+  "name": "alexa-skill-chat-gpt",
+  "version": "1.0.0",
+  "description": "Allow customers to interact with Chat GPT by voice",
   "main": "lambda/index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -r node_modules && rm package-lock.json",
     "build": "npm install && node ./lambda/index.js",
-    "release": "npm run build && zip -r lambda.zip . -x '.idea' -x '*.zip'"
+    "release": "npm run build && zip -r ../../lambda.zip . -x '.idea' -x '*.zip'"
   },
   "repository": {
     "type": "git",
@@ -16,15 +16,15 @@
   },
   "keywords": [
     "Alexa",
-    "game",
-    "skill"
+    "skill",
+    "chatgpt"
   ],
-  "author": "Amazon.com",
+  "author": "Lamy Liu",
   "license": "Amazon Software License",
   "bugs": {
-    "url": "https://github.com/alexa/skill-sample-nodejs-highlowgame/issues"
+    "url": "https://github.com/binweil/alexa-skill-chat-gpt/issues"
   },
-  "homepage": "https://github.com/alexa/skill-sample-nodejs-highlowgame#readmzipe",
+  "homepage": "https://github.com/binweil/alexa-skill-chat-gpt",
   "dependencies": {
     "ask-sdk": "^2.6.0",
     "ask-sdk-dynamodb-persistence-adapter": "^2.9.0",
@@ -34,6 +34,7 @@
     "i18next": "^10.5.0",
     "i18next-sprintf-postprocessor": "^0.2.2",
     "node-fetch": "^3.3.1",
-    "showdown": "^2.1.0"
+    "showdown": "^2.1.0",
+    "showdown-xss-filter": "0.2.0"
   }
 }
