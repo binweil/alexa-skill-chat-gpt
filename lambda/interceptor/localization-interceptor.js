@@ -1,10 +1,11 @@
 import i18n from "i18next";
 import sprintf from "i18next-sprintf-postprocessor";
 import Alexa from "ask-sdk";
-import {languageStringsEnglish} from "../constants/language-strings.js";
+import {languageStringsEnglish, languageStringsFrench} from "../constants/language-strings.js";
 
 const languageStrings = {
-    'en': languageStringsEnglish
+    'en': languageStringsEnglish,
+    'fr': languageStringsFrench,
 }
 
 export const LocalizationInterceptor = {

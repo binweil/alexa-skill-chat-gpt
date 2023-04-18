@@ -8,18 +8,36 @@ const DOCUMENT_ID = "VisualizeResponseText";
 
 // "headerAttributionImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/logo-world-of-plants-2.png",
 const datasource = {
-    "simpleTextTemplateData": {
-        "type": "object",
-        "properties": {
-            "backgroundImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/background-green.png",
-            "foregroundImageLocation": "left",
-            "foregroundImageSource": "https://d2s5tydsfac9v4.cloudfront.net/chat-gpt-108.png",
-            "headerTitle": "ChatGPT Response",
-            "headerSubtitle": "",
-            "hintText": "Try ask me, \"What is machine learning\"",
-            "primaryText": "",
-            "textAlignment": "start",
-            "titleText": "User Input"
+    "fr-FR": {
+        "simpleTextTemplateData": {
+            "type": "object",
+            "properties": {
+                "backgroundImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/background-green.png",
+                "foregroundImageLocation": "left",
+                "foregroundImageSource": "https://d2s5tydsfac9v4.cloudfront.net/chat-gpt-108.png",
+                "headerTitle": "Réponse ChatGPT",
+                "headerSubtitle": "",
+                "hintText": "Essayez de me demander \"De Vinci, qu'est-ce que l'apprentissage automatique?\"",
+                "primaryText": "",
+                "textAlignment": "start",
+                "titleText": "Entrée utilisateur"
+            }
+        }
+    },
+    "default": {
+        "simpleTextTemplateData": {
+            "type": "object",
+            "properties": {
+                "backgroundImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/background-green.png",
+                "foregroundImageLocation": "left",
+                "foregroundImageSource": "https://d2s5tydsfac9v4.cloudfront.net/chat-gpt-108.png",
+                "headerTitle": "ChatGPT Response",
+                "headerSubtitle": "",
+                "hintText": "Try ask me, \"What is machine learning\"",
+                "primaryText": "",
+                "textAlignment": "start",
+                "titleText": "User Input"
+            }
         }
     }
 };
@@ -37,6 +55,7 @@ const createDirectivePayload = (aplDocumentId, dataSources = {}, tokenId = "docu
 };
 
 export function getAPIDirective(handlerInput, userInputText, responseText, imageURL) {
+    const locale = Alexa.getLocale(handlerInput.requestEnvelope);
     if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
         let markdownResponse;
         try {
@@ -79,13 +98,18 @@ export function getAPIDirective(handlerInput, userInputText, responseText, image
             addCount(ASKING_QUESTION_INTENT_MM, METRICS_ERROR);
         }
 
-        datasource.simpleTextTemplateData.properties.titleText = userInputText;
-        datasource.simpleTextTemplateData.properties.primaryText = responseText;
-        if (markdownResponse && markdownResponse.length != 0) {
-            datasource.simpleTextTemplateData.properties.primaryText = markdownResponse;
+        let datasourceWithLocale = datasource.default;
+        if (locale != null && datasource.hasOwnProperty(locale)){
+            datasourceWithLocale = datasource[locale];
         }
-        datasource.simpleTextTemplateData.properties.foregroundImageSource = imageURL;
-        return createDirectivePayload(DOCUMENT_ID, datasource);
+
+        datasourceWithLocale.simpleTextTemplateData.properties.titleText = userInputText;
+        datasourceWithLocale.simpleTextTemplateData.properties.primaryText = responseText;
+        if (markdownResponse && markdownResponse.length != 0) {
+            datasourceWithLocale.simpleTextTemplateData.properties.primaryText = markdownResponse;
+        }
+        datasourceWithLocale.simpleTextTemplateData.properties.foregroundImageSource = imageURL;
+        return createDirectivePayload(DOCUMENT_ID, datasourceWithLocale);
     }
     return null;
 }

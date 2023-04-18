@@ -3,11 +3,21 @@ import Alexa from "ask-sdk";
 const DOCUMENT_ID = "HomeScreen";
 
 const datasource = {
-    "backgroundImage": {
-        "imageSource": "https://d2s5tydsfac9v4.cloudfront.net/homepage.png"
+    "fr-FR": {
+        "backgroundImage": {
+            "imageSource": "https://d2s5tydsfac9v4.cloudfront.net/homepage.png"
+        },
+        "bottomPrompt": {
+            "text": "Essayez \"Da Vinci, pourquoi le ciel est bleu\""
+        }
     },
-    "bottomPrompt": {
-        "text": "Try \"Alexa, why sky is blue\""
+    "default": {
+        "backgroundImage": {
+            "imageSource": "https://d2s5tydsfac9v4.cloudfront.net/homepage.png"
+        },
+        "bottomPrompt": {
+            "text": "Try \"Alexa, why sky is blue\""
+        }
     }
 };
 
@@ -32,6 +42,8 @@ export const LaunchRequest = {
         try {
             const { attributesManager } = handlerInput;
             const requestAttributes = attributesManager.getRequestAttributes();
+            const locale = Alexa.getLocale(handlerInput.requestEnvelope);
+
             // const attributes = await attributesManager.getPersistentAttributes() || {};
             attributesManager.setSessionAttributes({
                 interaction: 0,
@@ -42,7 +54,11 @@ export const LaunchRequest = {
             const reprompt = requestAttributes.t('CONTINUE_MESSAGE');
 
             if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
-                const aplDirective = createDirectivePayload(DOCUMENT_ID, datasource);
+                let datasourceWithLocale = datasource.default;
+                if (locale != null && datasource.hasOwnProperty(locale)){
+                    datasourceWithLocale = datasource[locale];
+                }
+                const aplDirective = createDirectivePayload(DOCUMENT_ID, datasourceWithLocale);
                 handlerInput.responseBuilder.addDirective(aplDirective);
             }
 

@@ -22,3 +22,28 @@ export const languageStringsEnglish = {
     YES_MESSAGE: "Ok! What do you want to chat about?"
   }
 };
+
+export const languageStringsFrench = {
+  translation: {
+    SKILL_NAME: 'Chat g p t',
+    LAUNCH_MESSAGE: "Bienvenue sur Chat G P T.<break time='0.3s'/>. Je peux discuter sur n'importe quel sujet ou générer une image pour vous. Comment puis-je vous aider aujourd'hui?",
+    HELP_MESSAGE: "Cette compétence est alimentée par ChatGPT 3.5. Voici ce que je peux faire: " +
+        "1. Discutez sur n'importe quel sujet. <break time='0.3s'/> Vous pouvez demander <break time='0.3s'/> Pourquoi le ciel est bleu <break time='0.5s'/>" +
+        "2. Générer une image. <break time='0.3s'/> Commencez votre question par <break time='0.3s'/> Afficher l'image pour <break time='0.3s'/>. Vous pouvez dire <break time='0.3s'/> Afficher l'image pour un animal des grands fonds <break time='0.5s'/>" +
+        "3. Contexte clair. <break time='0.3s'/> Dites simplement <break time='0.3s'/> clear <break time='0.5s'/>",
+    HELP_REPROMPT: "Essayez de me demander <break time='0.5s'/> Pourquoi le ciel est bleu",
+    QUESTION_RESPONSE: '%s',
+    IMAGE_SEARCH_RESPONSE: "Voici l'image que j'ai trouvé.",
+    CONTEXT_CLEAR_RESPONSE: "J'ai vidé le contexte. De quel sujet voulez-vous discuter maintenant?",
+    SUBSCRIPTION_UPSELL: "La compétence ChatGPT est gratuite pour les trois premières interactions. " +
+        "Veuillez dire <break time='0.3s'/> acheter un abonnement mensuel <break time='0.3s'/> ou" +
+        "<break time='0.3s'/> achetez un abonnement annuel <break time='0.3s'/> pour obtenir un accès illimité.",
+    CONTINUE_MESSAGE: "De quoi d'autre voulez-vous discuter?",
+    ERROR_MESSAGE: 'Désolé, une erreur s\'est produite.',
+    OPENAI_ERROR_MESSAGE: "Désolé, la réponse ne peut pas être rendue sur Alexa.",
+    DEVICE_CAPABILITY_ERROR_MESSAGE: "Désolé, votre appareil ne prend pas en charge le rendu d'image",
+    EXIT_MESSAGE: 'On se parle plus tard!',
+    FALLBACK_MESSAGE: "Désolé, je n'ai pas compris vos questions. Veuillez dire <break time='0.3s'/> help <break time='0.3s'/> pour voir ce que je peux faire.",
+    YES_MESSAGE: "D'accord! De quoi voulez-vous discuter?"
+  }
+};

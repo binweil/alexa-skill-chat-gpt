@@ -7,17 +7,33 @@ import {isUserEntitled} from "../utilities/util.js";
 const DOCUMENT_ID = "SearchImageScreen";
 
 const datasource = {
-    "imageListData": {
-        "type": "object",
-        "objectId": "imageList",
-        "title": "Search Image",
-        "listItems": [
-            {
-                "primaryText": "",
-                "secondaryText": "",
-                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark1.png",
-            }
-        ]
+    "fr-FR": {
+        "imageListData": {
+            "type": "object",
+            "objectId": "imageList",
+            "title": "Rechercher une image",
+            "listItems": [
+                {
+                    "primaryText": "Essayez \"Alexa, montre l'image du trou noir\"",
+                    "secondaryText": "",
+                    "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark1.png",
+                }
+            ]
+        }
+    },
+    "default": {
+        "imageListData": {
+            "type": "object",
+            "objectId": "imageList",
+            "title": "Search Image",
+            "listItems": [
+                {
+                    "primaryText": "Try \"Alexa, show image for black hole\"",
+                    "secondaryText": "",
+                    "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark1.png",
+                }
+            ]
+        }
     }
 };
 
@@ -41,6 +57,7 @@ export const ImageSearchIntent = {
     async handle(handlerInput, imagePrompt) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        const locale = Alexa.getLocale(handlerInput.requestEnvelope);
 
         if (!Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
             return handlerInput.responseBuilder
@@ -95,8 +112,13 @@ export const ImageSearchIntent = {
             console.log("Image Response: " + imageURL);
 
             if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
-                datasource.imageListData.listItems[0].imageSource = imageURL;
-                const aplDirective = createDirectivePayload(DOCUMENT_ID, datasource);
+                let datasourceWithLocale = datasource.default;
+                if (locale != null && datasource.hasOwnProperty(locale)){
+                    datasourceWithLocale = datasource[locale];
+                }
+
+                datasourceWithLocale.imageListData.listItems[0].imageSource = imageURL;
+                const aplDirective = createDirectivePayload(DOCUMENT_ID, datasourceWithLocale);
                 handlerInput.responseBuilder.addDirective(aplDirective);
             }
             return handlerInput.responseBuilder
