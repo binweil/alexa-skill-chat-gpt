@@ -69,7 +69,7 @@ export function getAPIDirective(handlerInput, userInputText, responseText, image
             };
 
             const converter = new showdown.Converter(options);
-            markdownResponse = converter.makeHtml(responseText);
+            markdownResponse = converter.makeHtml(JSON.stringify(responseText));
             console.log(markdownResponse);
             addCount(ASKING_QUESTION_INTENT_MM, METRICS_SUCCESS);
         } catch (err) {
