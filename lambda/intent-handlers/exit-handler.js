@@ -11,6 +11,7 @@ export const ExitHandler = {
 
         return handlerInput.responseBuilder
             .speak(requestAttributes.t('EXIT_MESSAGE'))
+            .withShouldEndSession(true)
             .getResponse();
     },
 };

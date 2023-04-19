@@ -26,27 +26,27 @@ export const languageStringsEnglish = {
 export const languageStringsFrench = {
   translation: {
     SKILL_NAME: 'Da Vinci Chatbot',
-    LAUNCH_MESSAGE: "Bienvenue sur ChatBot Da Vinci.<break time='0.3s'/>. " +
-        "Veuillez prononcer le mot de réveil <break time='0.3s'/> Da Vinci <break time='0.3s'/> avant toute question. " +
+    LAUNCH_MESSAGE: "Bienvenue sur ChatBot Da Vinci.<break time=\'0.3s\'/>. " +
+        "Veuillez prononcer le mot de réveil <break time=\'0.3s\'/> Da Vinci <break time=\'0.3s\'/> avant toute question. " +
         "Comment puis-je vous aider aujourd'hui?",
     HELP_MESSAGE: "Cette compétence est alimentée par ChatGPT 3.5. Voici ce que je peux faire: " +
-        "1. Discutez sur n'importe quel sujet. <break time='0.3s'/> Vous pouvez demander <break time='0.3s'/> Pourquoi le ciel est bleu <break time='0.5s'/>" +
-        "2. Générer une image. <break time='0.3s'/> Commencez votre question par <break time='0.3s'/> Afficher l'image pour <break time='0.3s'/>. Vous pouvez dire <break time='0.3s'/> Afficher l'image pour un animal des grands fonds <break time='0.5s'/>" +
-        "3. Contexte clair. <break time='0.3s'/> Dites simplement <break time='0.3s'/> clear <break time='0.5s'/>",
-    HELP_REPROMPT: "Essayez de me demander <break time='0.5s'/> Pourquoi le ciel est bleu",
+        "1. Discutez sur n'importe quel sujet. <break time=\'0.3s\'/> Vous pouvez demander <break time=\'0.3s\'/> Pourquoi le ciel est bleu <break time=\'0.5s\'/>" +
+        "2. Générer une image. <break time=\'0.3s\'/> Commencez votre question par <break time=\'0.3s\'/> Afficher l'image pour <break time=\'0.3s\'/>. Vous pouvez dire <break time=\'0.3s\'/> Afficher l'image pour un animal des grands fonds <break time='0.5s'/>" +
+        "3. Contexte clair.<break time=\'0.3s\'/> Dites simplement <break time=\'0.3s\'/> clear <break time=\'0.5s\'/>",
+    HELP_REPROMPT: "Essayez de me demander <break time=\'0.3s\'/> Pourquoi le ciel est bleu",
     QUESTION_RESPONSE: '%s',
     IMAGE_SEARCH_RESPONSE: "Voici l'image que j'ai trouvé.",
     CONTEXT_CLEAR_RESPONSE: "J'ai vidé le contexte. De quel sujet voulez-vous discuter maintenant?",
     SUBSCRIPTION_UPSELL: "La compétence ChatGPT est gratuite pour les trois premières interactions. " +
-        "Veuillez dire <break time='0.3s'/> acheter un abonnement mensuel <break time='0.3s'/> ou" +
-        "<break time='0.3s'/> achetez un abonnement annuel <break time='0.3s'/> pour obtenir un accès illimité.",
+        "Veuillez dire <break time=\'0.3s\'/> acheter un abonnement mensuel <break time=\'0.3s\'/> ou" +
+        "<break time=\'0.3s\'/> achetez un abonnement annuel <break time=\'0.3s\'/> pour obtenir un accès illimité.",
     CONTINUE_MESSAGE: "De quoi d'autre voulez-vous discuter?",
     ERROR_MESSAGE: 'Désolé, une erreur s\'est produite.',
     OPENAI_ERROR_MESSAGE: "Désolé, la réponse ne peut pas être rendue sur Alexa.",
     DEVICE_CAPABILITY_ERROR_MESSAGE: "Désolé, votre appareil ne prend pas en charge le rendu d'image",
     EXIT_MESSAGE: 'On se parle plus tard!',
-    FALLBACK_MESSAGE: "Désolé, veuillez dire le mot d'activation <break time='0.3s'/> Da Vinci <break time='0.3s'/> avant vos questions. " +
-        "Vous pouvez également dire <breaktime='0.3s'/> help <break time='0.3s'/> pour voir ce que je peux faire.",
+    FALLBACK_MESSAGE: "Désolé, veuillez dire le mot d'activation <break time=\'0.3s\'/> Da Vinci <break time=\'0.3s\'/> avant vos questions. " +
+        "Vous pouvez également dire <break time=\'0.3s\'/> aide <break time=\'0.3s\'/> pour voir ce que je peux faire.",
     YES_MESSAGE: "D'accord! De quoi voulez-vous discuter?"
   }
 };
