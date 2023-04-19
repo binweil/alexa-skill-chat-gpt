@@ -25,8 +25,10 @@ export const languageStringsEnglish = {
 
 export const languageStringsFrench = {
   translation: {
-    SKILL_NAME: 'Chat g p t',
-    LAUNCH_MESSAGE: "Bienvenue sur Chat G P T.<break time='0.3s'/>. Je peux discuter sur n'importe quel sujet ou générer une image pour vous. Comment puis-je vous aider aujourd'hui?",
+    SKILL_NAME: 'Da Vinci Chatbot',
+    LAUNCH_MESSAGE: "Bienvenue sur ChatBot Da Vinci.<break time='0.3s'/>. " +
+        "Veuillez prononcer le mot de réveil <break time='0.3s'/> Da Vinci <break time='0.3s'/> avant toute question. " +
+        "Comment puis-je vous aider aujourd'hui?",
     HELP_MESSAGE: "Cette compétence est alimentée par ChatGPT 3.5. Voici ce que je peux faire: " +
         "1. Discutez sur n'importe quel sujet. <break time='0.3s'/> Vous pouvez demander <break time='0.3s'/> Pourquoi le ciel est bleu <break time='0.5s'/>" +
         "2. Générer une image. <break time='0.3s'/> Commencez votre question par <break time='0.3s'/> Afficher l'image pour <break time='0.3s'/>. Vous pouvez dire <break time='0.3s'/> Afficher l'image pour un animal des grands fonds <break time='0.5s'/>" +
@@ -43,7 +45,8 @@ export const languageStringsFrench = {
     OPENAI_ERROR_MESSAGE: "Désolé, la réponse ne peut pas être rendue sur Alexa.",
     DEVICE_CAPABILITY_ERROR_MESSAGE: "Désolé, votre appareil ne prend pas en charge le rendu d'image",
     EXIT_MESSAGE: 'On se parle plus tard!',
-    FALLBACK_MESSAGE: "Désolé, je n'ai pas compris vos questions. Veuillez dire <break time='0.3s'/> help <break time='0.3s'/> pour voir ce que je peux faire.",
+    FALLBACK_MESSAGE: "Désolé, veuillez dire le mot d'activation <break time='0.3s'/> Da Vinci <break time='0.3s'/> avant vos questions. " +
+        "Vous pouvez également dire <breaktime='0.3s'/> help <break time='0.3s'/> pour voir ce que je peux faire.",
     YES_MESSAGE: "D'accord! De quoi voulez-vous discuter?"
   }
 };
