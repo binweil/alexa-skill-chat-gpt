@@ -63,14 +63,14 @@ export function getAPIDirective(handlerInput, userInputText, responseText, image
                 requireSpaceBeforeHeadingText: true,
                 encodeEmails: false,
                 extensions: [
-                    xssfilter,
+                    // xssfilter,
                     // showdownPrismjs
                 ],
             };
 
             const converter = new showdown.Converter(options);
-            markdownResponse = converter.makeHtml(JSON.stringify(responseText));
-            console.log(markdownResponse);
+            markdownResponse = converter.makeHtml(responseText);
+            console.log("Markdown Response: " + markdownResponse);
             addCount(ASKING_QUESTION_INTENT_MM, METRICS_SUCCESS);
         } catch (err) {
             markdownResponse = responseText;

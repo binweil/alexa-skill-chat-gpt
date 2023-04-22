@@ -97,7 +97,7 @@ export const AskingQuestionIntent = {
                 
                 const chatResponseData = await chatResponse.json();
                 chatResponseText = chatResponseData.choices[0].message.content;
-                chatResponseText.replace('&', " and ");
+                
                 console.log("Chat Response: " + chatResponseText);
     
                 const imageURLData = await imageResponse.json();
