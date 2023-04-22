@@ -88,7 +88,7 @@ export const AskingQuestionIntent = {
             // Chat API Request
             let chatResponseText = "";
             console.log("question is: " + question);
-            const chatResponsePromise = chatCompletion(question, apiKey);
+            const chatResponsePromise = chatCompletion(sessionAttributes.chatHistory, apiKey);
 
             // Image API Call
             if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
@@ -97,8 +97,9 @@ export const AskingQuestionIntent = {
                 
                 const chatResponseData = await chatResponse.json();
                 chatResponseText = chatResponseData.choices[0].message.content;
-                
+                sessionAttributes.chatHistory.push({"role": "assistant", "content": chatResponseText});
                 console.log("Chat Response: " + chatResponseText);
+                console.log("Chat Response Size: " + chatResponseText.length);
     
                 const imageURLData = await imageResponse.json();
                 let imageURL = null;
@@ -106,6 +107,7 @@ export const AskingQuestionIntent = {
                     imageURL = imageURLData.data[0].url
                 }
                 console.log("Image Response: " + imageURL);
+                console.log("Image Response Size: " + imageURL.length);
 
                 const aplDirective = getAPIDirective(handlerInput, question, chatResponseText, imageURL);
                 if (aplDirective != null) {

@@ -1,4 +1,4 @@
-export function chatCompletion(question, apiKey) {
+export function chatCompletion(chatHistory, apiKey) {
     const customHeaders = {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${apiKey}`
@@ -7,7 +7,7 @@ export function chatCompletion(question, apiKey) {
     let chatResponseText = "";
     const chatRequest = {
         "model": "gpt-3.5-turbo",
-        "messages": [{"role": "user", "content": question}],
+        "messages": chatHistory,
         "max_tokens": 100
     }
     return fetch("https://api.openai.com/v1/chat/completions", {
