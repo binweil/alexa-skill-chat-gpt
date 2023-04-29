@@ -106,7 +106,7 @@ export const ImageSearchIntent = {
         } catch (error) {
             console.log(error)
             return handlerInput.responseBuilder
-                .speak(requestAttributes.t('OPENAI_ERROR_MESSAGE'))
+                .speak(requestAttributes.t('IMAGE_SEARCH_INTENT_OPENAI_ERROR_MESSAGE'))
                 .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
                 .getResponse();
         }

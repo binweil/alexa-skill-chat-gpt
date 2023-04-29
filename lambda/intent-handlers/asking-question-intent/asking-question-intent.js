@@ -1,40 +1,30 @@
 import Alexa from "ask-sdk";
 import AWS from "aws-sdk";
-import {getAPIDirective} from "./multi-modal-render.js";
-import {isUserEntitled} from "../../utilities/util.js";
+import { getAPIDirective} from "./multi-modal-render.js";
+import { isUserEntitled } from "../../utilities/util.js";
 import { chatCompletion, generateImage } from "../../services/openai-service.js";
 import { addCount } from "../../services/cloudwatch.js";
 import { ASKING_QUESTION_INTENT, METRICS_ERROR } from "../../constants/cloudwatch-constants.js";
+import { callDirectiveService } from "../../services/alexa-directive-service.js";
 
 const MAX_CHAT_CONTEXT = 6;
 const ASKING_QUESTION_INTENT_SLOT_KEY = "question";
 
-function callDirectiveService(handlerInput) {
-    const requestEnvelope = handlerInput.requestEnvelope;
-    const directiveServiceClient = handlerInput.serviceClientFactory.getDirectiveServiceClient();
-
-    const requestId = requestEnvelope.request.requestId;
-    const endpoint = requestEnvelope.context.System.apiEndpoint;
-    const token = requestEnvelope.context.System.apiAccessToken;
-
-    const progressiveSpeechCandidates = [
-        "Hang on! I am brewing an insightful response just for you.",
-        "Thinking up a thoughtful response for you",
-        "Hold tight!",
-        "Wait just a moment! Your answer is being mixed to perfection!",
-        "Stay tuned! I will be back in no time!"
-    ];
-
-    const directive = {
-       header: {
-        requestId
-       },
-       directive: {
-        type: "VoicePlayer.Speak",
-        speech: progressiveSpeechCandidates[Math.floor(Math.random() * progressiveSpeechCandidates.length)]
-       }
-    };
-    return directiveServiceClient.enqueue(directive, endpoint, token);
+function refactorChatResponse(chatResponseText) {
+    try {
+        console.log("Before transform: " + chatResponseText);
+        // https://docs.aws.amazon.com/polly/latest/dg/escapees.html
+        chatResponseText = chatResponseText.replaceAll("&" , "&amp;"); // Replace "&" first to avoid conflict with the escapes like "&quot;"
+        chatResponseText = chatResponseText.replaceAll('"' , "&quot;");
+        chatResponseText = chatResponseText.replaceAll("'" , "&apos;");
+        chatResponseText = chatResponseText.replaceAll('<', "&lt;");
+        chatResponseText = chatResponseText.replaceAll('>', "&gt;");
+        console.log("After transform: " + chatResponseText);
+        return chatResponseText;
+    } catch (err) {
+        console.error("Cannot convert response text to SSML: " + err);
+        return chatResponseText;
+    }
 }
 
 export const AskingQuestionIntent = {
@@ -46,6 +36,8 @@ export const AskingQuestionIntent = {
         addCount(ASKING_QUESTION_INTENT);
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+
+        let INTENT_ERROR_MESSAGE = "QUESTION_INTENT_ERROR_MESSAGE";
 
         // Fetch Intent Input
         let question = aplQuestion;
@@ -76,65 +68,115 @@ export const AskingQuestionIntent = {
 
         // Add Progressive Response
         try {
-            await callDirectiveService(handlerInput);
+            callDirectiveService(handlerInput)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Status code ${response.status}, Error Message: ${response.statusText}`);
+                    }
+                    console.log(`Successfully call progressive response API with status code ${response.status}`);
+                }).catch((error)=>{
+                    addCount(ASKING_QUESTION_INTENT, "Progressive Directive Error");
+                    console.error("Failed to call progressive response API: " + error);
+                });
         } catch(err) {
-            console.error(err);
+            console.error("Failed to call progressive response API: " + err);
         }
 
         let secretsManager = new AWS.SecretsManager({region: 'us-west-2'});
-        const rawApiKey = await secretsManager.getSecretValue({SecretId: "chatgpt/apikey"}).promise();
-        const apiKey = rawApiKey.SecretString;
+        const rawApiKey = await secretsManager.getSecretValue({SecretId: "alexa-skill-chatgpt/apikey"}).promise();
+        const apiKeyJson = JSON.parse(rawApiKey.SecretString);
+        const apiKeyIndex = Math.floor(Math.random() * Object.keys(apiKeyJson).length);
+        const apiKey = apiKeyJson[apiKeyIndex];
+
         try {
             // Chat API Request
             let chatResponseText = "";
+            let chatResponseTemplate = "QUESTION_RESPONSE";
             console.log("question is: " + question);
             const chatResponsePromise = chatCompletion(sessionAttributes.chatHistory, apiKey);
 
-            // Image API Call
+            // API Call for multi-model device
             if (Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)['Alexa.Presentation.APL']) {
                 const imageResponsePromise = generateImage(question, apiKey);
-                const [imageResponse, chatResponse] = await Promise.all([imageResponsePromise, chatResponsePromise]);
-                
-                const chatResponseData = await chatResponse.json();
-                chatResponseText = chatResponseData.choices[0].message.content;
-                sessionAttributes.chatHistory.push({"role": "assistant", "content": chatResponseText});
-                console.log("Chat Response: " + chatResponseText);
-                console.log("Chat Response Size: " + chatResponseText.length);
-    
-                const imageURLData = await imageResponse.json();
-                let imageURL = null;
-                if ((imageURLData != null) && (imageURLData.data != null) && (imageURLData.data.length > 0)) {
-                    imageURL = imageURLData.data[0].url
-                }
-                console.log("Image Response: " + imageURL);
-                console.log("Image Response Size: " + imageURL.length);
 
-                const aplDirective = getAPIDirective(handlerInput, question, chatResponseText, imageURL);
-                if (aplDirective != null) {
-                    handlerInput.responseBuilder.addDirective(aplDirective)
-                }
+                await Promise.all([imageResponsePromise, chatResponsePromise])
+                    .then((responses)=>{
+                        const errors = responses.filter((response) => !response.ok);
+                        if (errors.length > 0) {
+                            throw errors.map((response) => Error(`Status code: ${response.status}. Error Message: ${response.statusText}`));
+                        }
+                        const json = responses.map((response) => {
+                            return response.json();
+                        });
+                        return Promise.all(json);
+                    }).then((data) => {
+                        console.log("Processing API Responses");
+                        const imageURLData = data[0];
+                        // Get Chat response text
+                        const chatResponseData = data[1];
+                        const rawChatResponseText = chatResponseData.choices[0].message.content;
+                        chatResponseText = refactorChatResponse(rawChatResponseText);
+                        if (chatResponseData.choices[0].finish_reason === "length") {
+                            chatResponseTemplate = "QUESTION_UNFINISHED_RESPONSE";
+                        }
+                        // Append Chat response to context
+                        sessionAttributes.chatHistory.push({"role": "assistant", "content": rawChatResponseText});
+                        console.log("Chat Response: " + chatResponseText);
+                        console.log("Chat Response Size: " + chatResponseText.length);
+
+                        // Get Image URL from response
+                        let imageURL = null;
+                        if ((imageURLData != null) && (imageURLData.data != null) && (imageURLData.data.length > 0)) {
+                            imageURL = imageURLData.data[0].url
+                            console.log("Image Response Size: " + imageURL.length);
+                        }
+                        console.log("Image Response: " + imageURL);
+                        // Create APL Directive
+                        const aplDirective = getAPIDirective(handlerInput, question, rawChatResponseText, imageURL);
+                        if (aplDirective != null) {
+                            handlerInput.responseBuilder.addDirective(aplDirective)
+                        }
+                    }).catch((errors) => {
+                        INTENT_ERROR_MESSAGE = "QUESTION_INTENT_OPENAI_ERROR_MESSAGE";
+                        throw new Error("Failed to call Open AI Service API: " + errors);
+                    });
                 return handlerInput.responseBuilder
-                    .speak(requestAttributes.t('QUESTION_RESPONSE', chatResponseText))
+                    .speak(requestAttributes.t(chatResponseTemplate, chatResponseText))
                     .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
                     .getResponse();
             }
             
-            const [chatResponse] = await Promise.all([chatResponsePromise]);
-            const chatResponseData = await chatResponse.json();
-            chatResponseText = chatResponseData.choices[0].message.content;
-            console.log("Chat Response: " + chatResponseText);
-
-            addCount(ASKING_QUESTION_INTENT, "Headless");
+            // API Call for Headless device
+            await chatResponsePromise.then((response)=>{
+                if (!response.ok) {
+                    throw new Error(`Status code: ${response.status}. Error Message: ${response.statusText}`);
+                }
+                return response.json();
+            }).then((data)=> {
+                console.log(data);
+                const rawChatResponseText = data.choices[0].message.content;
+                chatResponseText = refactorChatResponse(rawChatResponseText);
+                sessionAttributes.chatHistory.push({"role": "assistant", "content": rawChatResponseText});
+                console.log("Chat Response: " + chatResponseText);
+                if (data.choices[0].finish_reason === "length") {
+                    chatResponseTemplate = "QUESTION_UNFINISHED_RESPONSE";
+                }
+                addCount(ASKING_QUESTION_INTENT, "Headless");
+            }).catch((error)=>{
+                INTENT_ERROR_MESSAGE = "QUESTION_INTENT_OPENAI_ERROR_MESSAGE";
+                throw new Error("Failed to call Open AI Service API: " + error);
+            });
             return handlerInput.responseBuilder
-                .speak(requestAttributes.t('QUESTION_RESPONSE', chatResponseText))
+                .speak(requestAttributes.t(chatResponseTemplate, chatResponseText))
                 .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
                 .getResponse();
             
         } catch (error) {
+            console.error("Failed to full-fill AskingQuestionIntent: ");
             console.error(error);
             addCount(ASKING_QUESTION_INTENT, METRICS_ERROR);
             return handlerInput.responseBuilder
-                .speak(requestAttributes.t('OPENAI_ERROR_MESSAGE'))
+                .speak(requestAttributes.t(INTENT_ERROR_MESSAGE))
                 .reprompt(requestAttributes.t('CONTINUE_MESSAGE'))
                 .getResponse();
         }

@@ -1,4 +1,5 @@
 export function chatCompletion(chatHistory, apiKey) {
+    console.log("Calling Chat Completion API");
     const customHeaders = {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${apiKey}`
@@ -14,10 +15,11 @@ export function chatCompletion(chatHistory, apiKey) {
         method: 'POST',
         headers: customHeaders,
         body: JSON.stringify(chatRequest),
-    });
+    }, { signal: AbortSignal.timeout(10000) });
 }
 
 export function generateImage(prompt, apiKey) {
+    console.log("Calling Image Generation API");
     const customHeaders = {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${apiKey}`
@@ -31,5 +33,5 @@ export function generateImage(prompt, apiKey) {
         method: 'POST',
         headers: customHeaders,
         body: JSON.stringify(imageRequest),
-    });
+    }, { signal: AbortSignal.timeout(10000) });
 }
