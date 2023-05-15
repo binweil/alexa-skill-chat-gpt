@@ -1,34 +1,39 @@
 {
 	"en": {
-		"SKILL_NAME": "Voice G. P. T.",
-		"LAUNCH_MESSAGE": "Welcome to Voice G P T. <break time='0.3s'/> You can say <break time='0.3s'/> question <break time='0.3s'/> to get started, or start your question with the wake up word <break time='0.3s'/> tell me <break time='0.3s'/>. To listen to all the available options, just say <break time='0.3s'/> help.",
-		"HELP_MESSAGE": "This skill is powered by ChatGPT 3.5. Here's what you can do: 1. To chat on anything, say <break time='0.3s'/> question <break time='0.3s'/> to get started 2. To clear chat context, you can say <break time='0.3s'/> restart",
+		"SKILL_NAME": "Chat G. P. T.",
+		"LAUNCH_MESSAGE": "Welcome to Chat G P T. To listen to all the available options, just say <break time='0.3s'/> help. What do you want to chat about?",
+		"HELP_MESSAGE": "This skill is powered by ChatGPT 3.5. Here's what you can do: 1. Chat on anything <break time='0.3s'/> try ask me why sky is blue. <break time='0.3s'/> 2. To clear chat context, just say clear context. <break time='0.3s'/> 3. Buy subscription, you can say buy monthly subscription <break time='0.3s'/> or buy yearly subscription. <break time='0.3s'/>",
     	"HELP_REPROMPT": "You can say <break time='0.3s'/> Question <break time='0.3s'/> to get started.",
 		"STOP_MESSAGE": "Talk to you later!",
 		"FALLBACK_MESSAGE": "Sorry, I didn't get your request. Please say <break time='0.3s'/> question <break time='0.3s'/> to get started, or say <break time='0.3s'/> help <break time='0.3s'/> to see what I can do.",
 		"FALLBACK_REPROMPT": "What can I help you with?",
 		"CONTEXT_CLEAR_RESPONSE": "I have cleared the context. What topic do you want to chat about now?",
-		"QUESTION_RESPONSE": "{}. <break time='0.5s'/> What else do you want chat about? Or you can say <break time='0.3s'/> stop  <break time='0.3s'/> to exit.",
-		"QUESTION_UNFINISHED_RESPONSE": "{}. <break time='0.5s'/> You can say <break time='0.3s'/> more <break time='0.3s'/> to load more, or say <break time='0.3s'/> stop <break time='0.3s'/> to exit.",
+		"QUESTION_RESPONSE": "{}. What else do you want chat about?",
+		"QUESTION_UNFINISHED_RESPONSE": "{}. <break time='1s'/> If you want to hear more, just say <break time='0.3s'/> more <break time='0.3s'/>. What else do you want chat about?",
 	    "QUESTION_INTENT_ERROR_MESSAGE": "Sorry, the answer cannot be rendered on Alexa.",
     	"QUESTION_INTENT_OPENAI_ERROR_MESSAGE": "Sorry, I got error in connecting with OpenAI. Please try again later.",
+		"SUBSCRIPTION_UPSELL": "ChatGPT skill is free for the first three interactions. Please say buy monthly subscription <break time='0.3s'/> or buy yearly subscription <break time='0.3s'/> to get unlimited amount of access.",
+		"ISP_PURCHASE_DECLINED_MESSAGE": "Thanks for your interest in {}. Please restart the skill.",
+		"ISP_PURCHASE_ERROR_MESSAGE": "Thanks for your interest in {}. There was an error handling your purchase request. Please try again or contact us for help",
+		"ISP_CANCEL_DECLINED_MESSAGE": "Thanks for your interest in {}. Please restart the skill.",
+		"ISP_CANCEL_ERROR_MESSAGE": "There was an error handling your cancellation request. Please try again or contact us for help",
 		"ERROR_MESSAGE": "Sorry, an error occurred."
 	},
 	"en-AU": {
-		"SKILL_NAME": "Voice G. P. T."
+		"SKILL_NAME": "Chat G. P. T."
 	},
 	"en-CA": {
-		"SKILL_NAME": "Voice G. P. T."
+		"SKILL_NAME": "Chat G. P. T."
 	},
 	"en-GB": {
-		"SKILL_NAME": "Voice G. P. T."
+		"SKILL_NAME": "Chat G. P. T."
 	},
 	"en-IN": {
-		"SKILL_NAME": "Voice G. P. T."
+		"SKILL_NAME": "Chat G. P. T."
 	},
 	"es": {
 		"SKILL_NAME": "Voz G. P. T.",
-		"LAUNCH_MESSAGE": "Bienvenido a Voice G. P. T. <break time='0.3s'/> Por favor, di <break time='0.3s'/> pregunta <break time='0.3s'/> para empezar.",
+		"LAUNCH_MESSAGE": "Bienvenido a Chat G. P. T. <break time='0.3s'/> Por favor, di <break time='0.3s'/> pregunta <break time='0.3s'/> para empezar.",
 		"HELP_MESSAGE": "Esta skill funciona con ChatGPT 3.5. Estas son las opciones: 1. Para chatear sobre cualquier cosa, diga <break time='0.3s'/> pregunta <break time='0.3s'/> para comenzar 2. Para borrar el contexto del chat, puede decir <break time='0.3s'/> reiniciar",
     	"HELP_REPROMPT": "Puedes decir <break time='0.3s'/> Pregunta <break time='0.3s'/> para comenzar",
 		"STOP_MESSAGE": "¡Hablaré contigo más tarde!",

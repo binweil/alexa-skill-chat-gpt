@@ -3,8 +3,8 @@
 *.iml
 
 # Library Build
-skill_lambda/package
-skill_lambda/build
+skill_lambda/package/
+skill_lambda/build/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

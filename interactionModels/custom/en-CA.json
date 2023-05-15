@@ -1,449 +1,172 @@
 {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "voice g. p. t.",
-      "intents": [
-        {
-          "name": "GPT_QuestionIntent",
-          "slots": [
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "chat g. p. t.",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "bye-bye",
+                        "close the app",
+                        "close",
+                        "bye bye",
+                        "disconnect"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": [
+                        "thank you very much",
+                        "thank you"
+                    ]
+                },
+                {
+                    "name": "GPT_QuestionIntent",
+                    "slots": [
+                        {
+                            "name": "question",
+                            "type": "AMAZON.SearchQuery",
+                            "samples": [
+                                "{question}"
+                            ]
+                        }
+                    ],
+                    "samples": []
+                },
+                {
+                    "name": "GPT_BuySubsIntent",
+                    "slots": [
+                        {
+                            "name": "monthly_or_yearly",
+                            "type": "ISPName"
+                        }
+                    ],
+                    "samples": [
+                        "buy {monthly_or_yearly} subscriptions",
+                        "buy {monthly_or_yearly} subs",
+                        "buy {monthly_or_yearly} sub",
+                        "buy subscription",
+                        "buy {monthly_or_yearly} subscription"
+                    ]
+                },
+                {
+                    "name": "GPT_ClearContextIntent",
+                    "slots": [],
+                    "samples": [
+                        "restart conversation",
+                        "restart",
+                        "reset context",
+                        "reset",
+                        "clear context",
+                        "clear"
+                    ]
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "GPT_CancelSubsIntent",
+                    "slots": [
+                        {
+                            "name": "monthly_or_yearly",
+                            "type": "ISPName"
+                        }
+                    ],
+                    "samples": [
+                        "terminate {monthly_or_yearly} subscription",
+                        "refund {monthly_or_yearly} subscription",
+                        "cancel {monthly_or_yearly} subscription",
+                        "cancel subscription"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": [
+                        "ok"
+                    ]
+                },
+                {
+                    "name": "AMAZON.PauseIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ResumeIntent",
+                    "samples": []
+                }
+            ],
+            "types": [
+                {
+                    "name": "UserInput",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "user_input"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ISPName",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "billing_period",
+                                "synonyms": [
+                                    "month",
+                                    "year",
+                                    "monthly",
+                                    "yearly"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "GPT_QuestionIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "question",
+                            "type": "AMAZON.SearchQuery",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.355963528440.813747219120"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
             {
-              "name": "search_query",
-              "type": "AMAZON.SearchQuery"
+                "id": "Elicit.Slot.355963528440.813747219120",
+                "variations": [
+                    {
+                        "type": "SSML",
+                        "value": "<speak></speak>"
+                    }
+                ]
             }
-          ],
-          "samples": [
-            "question {search_query}",
-            "question",
-            "z.",
-            "y.",
-            "x.",
-            "w.",
-            "v.",
-            "u.",
-            "t.",
-            "s.",
-            "r.",
-            "q.",
-            "p.",
-            "o.",
-            "n.",
-            "m.",
-            "l.",
-            "k.",
-            "j.",
-            "i.",
-            "h.",
-            "g.",
-            "f.",
-            "e.",
-            "d.",
-            "c.",
-            "b.",
-            "a."
-          ]
-        },
-        {
-          "name": "GPT_BuySubsIntent",
-          "slots": [
-            {
-              "name": "monthly_or_yearly",
-              "type": "ISPName"
-            }
-          ],
-          "samples": [
-            "{monthly_or_yearly}",
-            "subs",
-            "subscription",
-            "buy {monthly_or_yearly} subscriptions",
-            "buy {monthly_or_yearly} subs",
-            "buy {monthly_or_yearly} sub",
-            "buy subscription",
-            "buy {monthly_or_yearly} subscription"
-          ]
-        },
-        {
-          "name": "GPT_CancelSubIntent",
-          "slots": [
-            {
-              "name": "monthly_or_yearly",
-              "type": "ISPName"
-            }
-          ],
-          "samples": [
-            "terminate {monthly_or_yearly} subscription",
-            "refund {monthly_or_yearly} subscription",
-            "cancel {monthly_or_yearly} subscription",
-            "cancel subscription"
-          ]
-        },
-        {
-          "name": "GPT_SearchImageIntent",
-          "slots": [
-            {
-              "name": "user_input",
-              "type": "AMAZON.SearchQuery",
-              "samples": [
-                "{user_input}"
-              ]
-            },
-            {
-              "name": "search_image_request",
-              "type": "AMAZON.SearchQuery"
-            }
-          ],
-          "samples": [
-            "show image of {search_image_request}",
-            "search image",
-            "picture",
-            "image",
-            "show image {search_image_request}",
-            "show image for {search_image_request}"
-          ]
-        },
-        {
-          "name": "GPT_ClearContextIntent",
-          "slots": [],
-          "samples": [
-            "restart conversation",
-            "restart",
-            "reset context",
-            "reset",
-            "clear context",
-            "clear"
-          ]
-        },
-        {
-          "name": "GPT_MoreIntent",
-          "slots": [],
-          "samples": [
-            "more"
-          ]
-        },
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": [
-            "stop",
-            "thanks",
-            "thank you",
-            "bye-bye",
-            "close the app",
-            "close",
-            "bye bye",
-            "disconnect"
-          ]
-        },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": [
-            "main screen",
-            "go home",
-            "home",
-            "back",
-            "go back"
-          ]
-        },
-        {
-          "name": "AMAZON.FallbackIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.NoIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.YesIntent",
-          "samples": [
-            "ok"
-          ]
-        },
-        {
-          "name": "AMAZON.PauseIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.ResumeIntent",
-          "samples": []
-        }
-      ],
-      "types": [
-        {
-          "values": [
-            {
-              "name": {
-                "value": "random",
-                "synonyms": [
-                  "z.",
-                  "y.",
-                  "x.",
-                  "w.",
-                  "v.",
-                  "u.",
-                  "t.",
-                  "s.",
-                  "r.",
-                  "q.",
-                  "p.",
-                  "o.",
-                  "n.",
-                  "m.",
-                  "l.",
-                  "k.",
-                  "j.",
-                  "i.",
-                  "h.",
-                  "g.",
-                  "f.",
-                  "e.",
-                  "d.",
-                  "c.",
-                  "b.",
-                  "a."
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "user_greet",
-                "synonyms": [
-                  "hey",
-                  "hello",
-                  "hi"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "user_request",
-                "synonyms": [
-                  "tell",
-                  "can you",
-                  "give",
-                  "will you",
-                  "would you"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "user_question",
-                "synonyms": [
-                  ".",
-                  "who",
-                  "which",
-                  "where",
-                  "why",
-                  "search",
-                  "how",
-                  "what"
-                ]
-              }
-            }
-          ],
-          "name": "UserInput"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "billing_period",
-                "synonyms": [
-                  "month",
-                  "year",
-                  "monthly",
-                  "yearly"
-                ]
-              }
-            }
-          ],
-          "name": "ISPName"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "hi",
-                "synonyms": [
-                  "yo",
-                  "hello",
-                  "hey",
-                  "hi"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "have",
-                "synonyms": [
-                  "had",
-                  "has",
-                  "have"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "will",
-                "synonyms": [
-                  "would",
-                  "will"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "can",
-                "synonyms": [
-                  "could",
-                  "can"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "tell",
-                "synonyms": [
-                  "told",
-                  "tell"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "common_question_mark",
-                "synonyms": [
-                  "where",
-                  "who",
-                  "what",
-                  "how",
-                  "why",
-                  "which"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "random",
-                "synonyms": [
-                  "z.",
-                  "y.",
-                  "x.",
-                  "w.",
-                  "v.",
-                  "u.",
-                  "t.",
-                  "s.",
-                  "r.",
-                  "q.",
-                  "p.",
-                  "o.",
-                  "n.",
-                  "m.",
-                  "l.",
-                  "k.",
-                  "j.",
-                  "i.",
-                  "h.",
-                  "g.",
-                  "f.",
-                  "e.",
-                  "d.",
-                  "c.",
-                  "b.",
-                  "a."
-                ]
-              }
-            }
-          ],
-          "name": "QuestionMark"
-        }
-      ]
-    },
-    "dialog": {
-      "intents": [
-        {
-          "name": "GPT_QuestionIntent",
-          "confirmationRequired": false,
-          "prompts": {},
-          "slots": [
-            {
-              "name": "search_query",
-              "type": "AMAZON.SearchQuery",
-              "elicitationRequired": true,
-              "confirmationRequired": false,
-              "prompts": {
-                "elicitation": "Elicit.Slot.790967962309.1059715520899"
-              }
-            }
-          ],
-          "delegationStrategy": "ALWAYS"
-        },
-        {
-          "name": "GPT_SearchImageIntent",
-          "confirmationRequired": false,
-          "prompts": {},
-          "slots": [
-            {
-              "name": "user_input",
-              "type": "AMAZON.SearchQuery",
-              "elicitationRequired": true,
-              "confirmationRequired": false,
-              "prompts": {
-                "elicitation": "Elicit.Slot.1029019227776.808587636834"
-              }
-            },
-            {
-              "name": "search_image_request",
-              "type": "AMAZON.SearchQuery",
-              "elicitationRequired": false,
-              "confirmationRequired": false,
-              "prompts": {}
-            }
-          ]
-        }
-      ],
-      "delegationStrategy": "ALWAYS"
-    },
-    "prompts": [
-      {
-        "id": "Elicit.Slot.327242416880.156198800685",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "How can I help you today?"
-          },
-          {
-            "type": "PlainText",
-            "value": "What do you want chat about?"
-          }
         ]
-      },
-      {
-        "id": "Elicit.Slot.790967962309.1059715520899",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "What do you want chat about?"
-          }
-        ]
-      },
-      {
-        "id": "Elicit.Slot.1029019227776.808587636834",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "What kind of image do you want?"
-          }
-        ]
-      }
-    ]
-  },
-  "version": "2"
+    }
 }

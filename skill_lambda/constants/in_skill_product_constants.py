@@ -1,0 +1,2 @@
+MONTHLY_SUBSCRIPTION_PRODUCT_ID = "amzn1.adg.product.ebbdb80e-3da2-46c2-9d12-60c6f1c2e519"
+YEARLY_SUBSCRIPTION_PRODUCT_ID = "amzn1.adg.product.1552c261-fbce-42eb-900a-779d0923cbeb"
