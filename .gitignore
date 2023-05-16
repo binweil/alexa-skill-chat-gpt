@@ -1,6 +1,7 @@
 # IDE or OS files
 .DS_Store
 *.iml
+.idea/
 
 # Library Build
 skill_lambda/package
