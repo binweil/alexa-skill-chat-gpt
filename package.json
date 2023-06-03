@@ -1,9 +1,6 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "release": "./aws-lambda-helper.sh && lerna clean --yes && lerna bootstrap && lerna run release",
     "deploy": "npm run release && lerna run deploy"

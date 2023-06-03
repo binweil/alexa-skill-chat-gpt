@@ -2,7 +2,7 @@
 cd ./packages/lambda/skill_lambda
 rm -rf package
 rm -rf build
-rm *.zip
+rm -rf *.zip
 
 pip install -r requirements.txt  --target ./package
 mkdir build
