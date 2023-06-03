@@ -4,8 +4,9 @@
 .idea/
 
 # Library Build
-skill_lambda/package
-skill_lambda/build
+packages/lambda/skill_lambda/package/
+packages/lambda/skill_lambda/build/
+node_modules/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

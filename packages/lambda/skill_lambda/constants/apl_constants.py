@@ -119,14 +119,46 @@ class HelpListScreenAPL:
                                 ]
                             }
                         ]
-                    },
+                    }
+                    # {
+                    #     "primaryText": "Buy Subscription",
+                    #     "secondaryText": "ex. buy monthly/yearly subscription"
+                    # }
+                ]
+            }
+        }
+
+    def get_data_source(self):
+        return self.data_source
+
+    def get_document_token(self):
+        return self.document_token
+
+    def get_document_id(self):
+        return self.document_id
+
+
+class SearchImageAPL:
+    def __init__(self):
+        self.document_id = "SearchImageScreen"
+        self.document_token = "documentToken"
+        self.data_source = {
+            "imageListData": {
+                "type": "object",
+                "objectId": "imageList",
+                "title": "Search Image",
+                "listItems": [
                     {
-                        "primaryText": "Buy Subscription",
-                        "secondaryText": "ex. buy monthly/yearly subscription"
+                        "primaryText": "",
+                        "secondaryText": "",
+                        "imageSource": "https://d2s5tydsfac9v4.cloudfront.net/image-test-1.jpeg"
                     }
                 ]
             }
         }
+
+    def set_image_source(self, url):
+        self.data_source["imageListData"]["listItems"][0]["imageSource"] = url
 
     def get_data_source(self):
         return self.data_source

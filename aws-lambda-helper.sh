@@ -1,7 +1,7 @@
 #/bin/bash
-cd skill_lambda
-rm -R package
-rm -R build
+cd ./packages/lambda/skill_lambda
+rm -rf package
+rm -rf build
 rm *.zip
 
 pip install -r requirements.txt  --target ./package
@@ -12,4 +12,4 @@ rsync -r --exclude 'build' --exclude 'package' . build/
 cd build
 zip -r lambda.zip .
 
-cd ../..
+cd ../../..

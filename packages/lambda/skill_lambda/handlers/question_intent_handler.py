@@ -23,8 +23,9 @@ from directive.progressive_directive import call_directive_service
 from handlers.buy_subs_intent_handler import BuySubsIntentHandler
 from handlers.cancel_subs_handler import CancelSubsIntentHandler
 from handlers.help_intent_handler import HelpIntentHandler
+from handlers.search_image_intent_handler import SearchImageIntentHandler
 from utils.intent_dispatch_utils import is_clear_context_request, is_stop_session_request, is_buy_subs_request, \
-    is_cancel_subs_request, supports_apl, is_help_request
+    is_cancel_subs_request, supports_apl, is_help_request, is_search_image_request
 from utils.isp_utils import is_entitled
 
 logger = logging.getLogger(__name__)
@@ -41,6 +42,7 @@ class QuestionIntentHandler(AbstractRequestHandler):
         self.redirected_search_query = ""
         self.search_query = ""
         self.gpt_response = ""
+        self.gpt_raw_response = ""
         self.finish_reason = ""
         self.gpt_image_response = ""
         self.MAX_CHAT_CONTEXT = 6
@@ -101,6 +103,12 @@ class QuestionIntentHandler(AbstractRequestHandler):
                 slots = handler_input.request_envelope.request.intent.slots
                 utterance_text = slots[QUESTION_INTENT_QUESTION_SLOT_NAME].value
                 return cancel_subs_handler.handle_text_request(handler_input, utterance_text)
+
+            if is_search_image_request(handler_input):
+                search_image_handler = SearchImageIntentHandler()
+                slots = handler_input.request_envelope.request.intent.slots
+                utterance_text = slots[QUESTION_INTENT_QUESTION_SLOT_NAME].value
+                return search_image_handler.handle(handler_input)
 
             self.process_chat_context(handler_input)
             if (self.interaction_count > QUESTION_INTENT_MAX_FREE_INTERACTION_COUNT) \
@@ -239,24 +247,26 @@ class QuestionIntentHandler(AbstractRequestHandler):
             text_response = raw_responses["text_response"]
             # image_response = raw_responses["image_response"]
             logger.info("--- It took %s seconds for calling OpenAI ---" % (time.time() - start_time))
-
             logger.info("Raw response: " + json.dumps(text_response))
-            # Replace special characters
+
             content = text_response["choices"][0]["message"]["content"]
+
+            # Store text response content
+            self.gpt_raw_response = text_response["choices"][0]["message"]["content"]
+            self.context.append({"role": "assistant", "content": content})
+            self.finish_reason = text_response["choices"][0]["finish_reason"]
+
+            # Replace special characters
             content = content.replace("&", "&amp;")
             content = content.replace('"', "&quot;")
             content = content.replace("'", "&apos;")
             content = content.replace('<', "&lt;")
             content = content.replace('>', "&gt;")
-
-            # Store text response content
             self.gpt_response = content
-            self.context.append({"role": "assistant", "content": content})
-            self.finish_reason = text_response["choices"][0]["finish_reason"]
 
             # Store image response url
-            # if image_response["data"][0]["url"]:
-            #     self.gpt_image_response = image_response["data"][0]["url"]
+            # if image_response["data"] and (len(image_response["data"]) > 0):
+            #    self.gpt_image_response = image_response["data"][0]["url"]
         except requests.exceptions.Timeout as exception:
             logger.error(exception)
             self.gpt_response = "The OpenAI server is overloaded now. Please wait a few seconds, and try again."
@@ -307,7 +317,7 @@ class QuestionIntentHandler(AbstractRequestHandler):
         apl = VisualizeResponseTextAPL()
         if supports_apl(handler_input):
             apl.set_title_text(self.search_query)
-            apl.set_primary_text(self.gpt_response)
+            apl.set_primary_text(self.gpt_raw_response)
             apl.set_random_background_image()
 
             # Build APL card

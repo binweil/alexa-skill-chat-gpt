@@ -23,6 +23,7 @@ from handlers.help_intent_handler import HelpIntentHandler
 from handlers.launch_request_handler import LaunchRequestHandler
 from handlers.more_intent_handler import MoreIntentHandler
 from handlers.question_intent_handler import QuestionIntentHandler
+from handlers.search_image_intent_handler import SearchImageIntentHandler
 from handlers.session_ended_request_handler import SessionEndedRequestHandler
 
 sb = StandardSkillBuilder()
@@ -164,6 +165,7 @@ class ResponseLogger(AbstractResponseInterceptor):
 # Register intent handlers
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(QuestionIntentHandler())
+sb.add_request_handler(SearchImageIntentHandler())
 sb.add_request_handler(MoreIntentHandler())
 sb.add_request_handler(ClearContextIntentHandler())
 sb.add_request_handler(HelpIntentHandler())

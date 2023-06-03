@@ -1,8 +1,13 @@
+import logging
+
 from ask_sdk_core.utils import get_supported_interfaces
 from ask_sdk_core.handler_input import HandlerInput
 
 from constants.intent_constants import QUESTION_INTENT_QUESTION_SLOT_NAME
 
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 def is_buy_subs_request(handler_input):
     # type: (HandlerInput) -> bool
@@ -55,6 +60,24 @@ def is_stop_session_request(handler_input):
     slots = handler_input.request_envelope.request.intent.slots
     search_query = slots[QUESTION_INTENT_QUESTION_SLOT_NAME].value
     return search_query.lower() in stop_keywords
+
+
+def is_search_image_request(handler_input):
+    # type: (HandlerInput) -> bool
+    logger.info("Checking is_search_image_request")
+
+    if not hasattr(handler_input.request_envelope.request, "intent"):
+        return False
+    if not hasattr(handler_input.request_envelope.request.intent, "slots"):
+        return False
+    search_image_keywords = ["search image for", "search image of"]
+    slots = handler_input.request_envelope.request.intent.slots
+    search_query = slots[QUESTION_INTENT_QUESTION_SLOT_NAME].value
+    logger.info("search_query is: " + search_query.lower())
+    for keyword in search_image_keywords:
+        if keyword in search_query.lower():
+            return True
+    return False
 
 
 def is_help_request(handler_input):

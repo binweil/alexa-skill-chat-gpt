@@ -18,9 +18,7 @@ Installation
 ------------ 
 1. Clone the repository using `git clone https://github.com/username/repo.git`
 2. Navigate to the root directory of the cloned repository. 
-3. Run the installation script inside the project root folder using `./aws-lambda-helper.sh`
-4. Inside the skill_lambda/build, verify there's a zip file called `lambda.zip`.
-5. Go to the aws console, and upload the `lambda.zip` to your lambda function
+3. Run the installation script inside the project root folder using `npm run release`
 
 Architecture
 ------------
