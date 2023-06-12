@@ -77,7 +77,7 @@ class CancelResponseHandler(AbstractRequestHandler):
                 speech = data[ISP_CANCEL_ERROR_MESSAGE]
                 return handler_input.response_builder.speak(speech).set_should_end_session(True).response
         except Exception as exception:
-            logger.error("Buy Subs API Call failure. Error: {}")
+            logger.exception("Buy Subs API Call failure. Error: {}")
             traceback.print_tb(exception.__traceback__)
             speech = data[ISP_CANCEL_ERROR_MESSAGE].format("Chat GPT Subscription")
             return handler_input.response_builder.speak(speech).set_should_end_session(True).response

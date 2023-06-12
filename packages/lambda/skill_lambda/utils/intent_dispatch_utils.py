@@ -91,6 +91,20 @@ def is_help_request(handler_input):
     search_query = slots[QUESTION_INTENT_QUESTION_SLOT_NAME].value
     return search_query.lower() in help_keywords
 
+def is_update_model_request(handler_input):
+    # type: (HandlerInput) -> bool
+    if not hasattr(handler_input.request_envelope.request, "intent"):
+        return False
+    if not hasattr(handler_input.request_envelope.request.intent, "slots"):
+        return False
+    update_model_keywords = ["update model", "switch model", "change model"]
+    slots = handler_input.request_envelope.request.intent.slots
+    utterance = slots[QUESTION_INTENT_QUESTION_SLOT_NAME].value
+    for keyword in update_model_keywords:
+        if keyword in utterance.lower():
+            return True
+    return False
+
 def supports_apl(handler_input):
     # type: (HandlerInput) -> bool
     # Checks whether APL is supported by the User's device

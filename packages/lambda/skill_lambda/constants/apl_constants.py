@@ -64,7 +64,7 @@ class HomeScreenAPL:
         self.document_token = "documentToken"
         self.data_source = {
             "backgroundImage": {
-                "imageSource": "https://d2s5tydsfac9v4.cloudfront.net/voice-gpt/home-screen-backgroud.png"
+                "imageSource": "https://assets.alexa-chat-gpt.neural-x.com/homepage.png"
             },
             "bottomPrompt": {
                 "text": "Try \"Alexa, tell me why sky is blue\" "
@@ -98,27 +98,27 @@ class HelpListScreenAPL:
                 "listItems": [
                     {
                         "primaryText": "Chat with AI",
-                        "secondaryText": "ex. Why sky is blue",
-                        "primaryAction": [
-                            {
-                                "type": "SendEvent",
-                                "arguments": [
-                                    "REDIRECT_QUESTION_INTENT_FROM_HELP"
-                                ]
-                            }
-                        ]
+                        "secondaryText": "ex. Why sky is blue"
+                        # "primaryAction": [
+                        #     {
+                        #         "type": "SendEvent",
+                        #         "arguments": [
+                        #             "REDIRECT_QUESTION_INTENT_FROM_HELP"
+                        #         ]
+                        #     }
+                        # ]
                     },
                     {
                         "primaryText": "Clear Chat Context",
-                        "secondaryText": "ex. clear context",
-                        "primaryAction": [
-                            {
-                                "type": "SendEvent",
-                                "arguments": [
-                                    "REDIRECT_CLEAR_CONTEXT_INTENT"
-                                ]
-                            }
-                        ]
+                        "secondaryText": "ex. clear context"
+                        # "primaryAction": [
+                        #     {
+                        #         "type": "SendEvent",
+                        #         "arguments": [
+                        #             "REDIRECT_CLEAR_CONTEXT_INTENT"
+                        #         ]
+                        #     }
+                        # ]
                     }
                     # {
                     #     "primaryText": "Buy Subscription",
@@ -159,6 +159,43 @@ class SearchImageAPL:
 
     def set_image_source(self, url):
         self.data_source["imageListData"]["listItems"][0]["imageSource"] = url
+
+    def get_data_source(self):
+        return self.data_source
+
+    def get_document_token(self):
+        return self.document_token
+
+    def get_document_id(self):
+        return self.document_id
+
+
+class BubbleChatAPL:
+    def __init__(self):
+        self.document_id = "BubbleChatScreen"
+        self.document_token = "documentToken"
+        self.data_source = {
+            "backgroundImage": {
+                "url": "https://assets.alexa-chat-gpt.neural-x.com/voice-gpt/background-image-1.png"
+            },
+            "chat_context": {
+                "type": "object",
+                "objectId": "chatListData",
+                "listItems": [
+                    {
+                        "type": "SpeechBubble",
+                        "message": "No chat history",
+                        "sender": "alexa"
+                    }
+                ]
+            }
+        }
+
+    def set_chat_context(self, chat_context):
+        self.data_source["chat_context"]["listItems"] = chat_context
+
+    def set_background_image(self, url):
+        self.data_source["backgroundImage"]["url"] = url
 
     def get_data_source(self):
         return self.data_source

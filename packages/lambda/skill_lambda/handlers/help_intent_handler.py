@@ -35,9 +35,8 @@ class HelpIntentHandler(AbstractRequestHandler):
         # Render APL card
         try:
             self.launch_screen(handler_input)
-        except Exception as e:
-            logger.error("Failed to render HelpIntent APL card")
-            logger.error(e)
+        except Exception as exception:
+            logger.exception("Failed to render HelpIntent APL card")
 
         handler_input.response_builder.speak(speech).ask(
             reprompt)

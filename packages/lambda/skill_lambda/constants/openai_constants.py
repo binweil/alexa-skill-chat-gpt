@@ -1,7 +1,8 @@
 from enum import Enum
 
 GPT_MODEL_MAX_TOKEN = 100
-
+RESULT_KEY_TEXT_RESPONSE = "text_response"
+RESULT_KEY_IMAGE_RESPONSE = "image_response"
 
 class OpenAIConfig(Enum):
     # Model documentation: https://platform.openai.com/docs/models/overview
@@ -28,9 +29,12 @@ class OpenAIRequest:
     def get_timeout(self) -> int:
         pass
 
+    def get_response_key(self) -> str:
+        pass
+
 
 class OpenAIChatRequest(OpenAIRequest):
-    def __init__(self, api_key, context, max_token=GPT_MODEL_MAX_TOKEN):
+    def __init__(self, api_key, context, max_token=GPT_MODEL_MAX_TOKEN, model=OpenAIConfig.GPT_MODEL_3_5.value):
         super().__init__(api_key)
         self.api_key = api_key
         self.headers = {
@@ -38,7 +42,7 @@ class OpenAIChatRequest(OpenAIRequest):
             "Authorization": "Bearer " + api_key
         }
         self.body = {
-            "model": OpenAIConfig.GPT_MODEL_3_5.value,
+            "model": model,
             "messages": context,
             "max_tokens": max_token
         }
@@ -50,7 +54,10 @@ class OpenAIChatRequest(OpenAIRequest):
         return self.body
 
     def get_endpoint(self):
-        return OpenAIConfig.CHAT_ENDPOINT
+        return OpenAIConfig.CHAT_ENDPOINT.value
+
+    def get_response_key(self):
+        return RESULT_KEY_TEXT_RESPONSE
 
 
 class OpenAIImageRequest(OpenAIRequest):
@@ -74,12 +81,7 @@ class OpenAIImageRequest(OpenAIRequest):
         return self.body
 
     def get_endpoint(self):
-        return OpenAIConfig.IMAGE_ENDPOINT
+        return OpenAIConfig.IMAGE_ENDPOINT.value
 
-
-chat_request = OpenAIChatRequest("api_key", ["context1", "context2"])
-image_request = OpenAIImageRequest("api_key", "prompt")
-
-print(chat_request.get_body())
-print(image_request.get_body())
-
+    def get_response_key(self):
+        return RESULT_KEY_IMAGE_RESPONSE

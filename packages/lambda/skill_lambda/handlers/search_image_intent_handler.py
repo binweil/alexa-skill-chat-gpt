@@ -155,7 +155,8 @@ class SearchImageIntentHandler(AbstractRequestHandler):
                 SecretId=secret_name
             )
         except ClientError as exception:
-            logger.error(exception)
+            logger.exception("Failed to fetch OpenAI API key")
+            raise exception
 
         secret_string = get_secret_value_response['SecretString']
         secret = json.loads(secret_string)

@@ -1,6 +1,10 @@
+import logging
 from typing import Union
 from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model.services.monetization import EntitledState
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 def in_skill_product_response(handler_input):
@@ -21,10 +25,14 @@ def is_entitled(handler_input):
     """Is the product in ENTITLED state."""
     # type: (HandlerInput) -> bool
     in_skill_response = in_skill_product_response(handler_input)
+    logger.info("in_skill_response")
+    logger.info(in_skill_response)
     if in_skill_response:
         subscription = [
             l for l in in_skill_response.in_skill_products
             if "subscription" in l.reference_name]
+
+        logger.error(subscription)
         return (is_product(subscription) and
                 subscription[0].entitled == EntitledState.ENTITLED)
     return False

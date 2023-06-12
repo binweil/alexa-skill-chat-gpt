@@ -12,6 +12,8 @@ QUESTION_RESPONSE = "QUESTION_RESPONSE"
 QUESTION_UNFINISHED_RESPONSE = "QUESTION_UNFINISHED_RESPONSE"
 QUESTION_INTENT_ERROR_MESSAGE = "QUESTION_INTENT_ERROR_MESSAGE"
 QUESTION_INTENT_OPENAI_ERROR_MESSAGE = "QUESTION_INTENT_OPENAI_ERROR_MESSAGE"
+MODEL_UPDATE_RESPONSE = "MODEL_UPDATE_RESPONSE"
+MODEL_UPDATE_ERROR_MESSAGE = "MODEL_UPDATE_ERROR_MESSAGE"
 SEARCH_IMAGE_RESPONSE = "SEARCH_IMAGE_RESPONSE"
 SEARCH_IMAGE_INCAPABLE_DEVICE = "SEARCH_IMAGE_INCAPABLE_DEVICE"
 SUBSCRIPTION_UPSELL = "SUBSCRIPTION_UPSELL"
@@ -21,11 +23,14 @@ ISP_CANCEL_DECLINED_MESSAGE = "ISP_CANCEL_DECLINED_MESSAGE"
 ISP_CANCEL_ERROR_MESSAGE = "ISP_CANCEL_ERROR_MESSAGE"
 
 SPEECHCONS_ACK = [
-    "ack",
-    "all righty",
-    "alrighty",
-    "as you wish",
-    "gotcha",
-    "you bet",
-    "yabba dabba doo"
+    "Patience, please! Your answer is being processed.",
+    "Hang tight! I'm searching for the perfect solution.",
+    "Wait right there! Your request is important to us.",
+    "Keep calm and hold on! We're almost there.",
+    "Just a moment, please! Your data is being compiled.",
+    "Hold your horses! I'm just about ready to reveal the surprise.",
+    "Give me a second! I'm pulling up the necessary information.",
+    "Sit tight! I'm gathering all the details you requested.",
+    "Bear with me! I'm sorting everything out for you.",
+    "Stay put! Your request is on its way."
 ]
