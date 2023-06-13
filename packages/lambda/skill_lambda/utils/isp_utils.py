@@ -31,8 +31,6 @@ def is_entitled(handler_input):
         subscription = [
             l for l in in_skill_response.in_skill_products
             if "subscription" in l.reference_name]
-
-        logger.error(subscription)
         return (is_product(subscription) and
                 subscription[0].entitled == EntitledState.ENTITLED)
     return False

@@ -43,7 +43,6 @@ class QuestionIntentHandler(AbstractRequestHandler):
         self.redirected_search_query = ""
         self.search_query = ""
         self.gpt_response = ""
-        self.gpt_raw_response = ""
         self.finish_reason = ""
         self.gpt_image_response = ""
         self.MAX_CHAT_CONTEXT = 6
@@ -133,7 +132,7 @@ class QuestionIntentHandler(AbstractRequestHandler):
                     .response
 
             # Send Progressive Directive
-            call_directive_service(handler_input)
+            # call_directive_service(handler_input)
 
             # Call OpenAI to get chat response
             self.get_api_key()
@@ -225,18 +224,14 @@ class QuestionIntentHandler(AbstractRequestHandler):
         try:
             model_setting = handler_input.attributes_manager.session_attributes["model_setting"]
             chat_request = OpenAIChatRequest(self.api_key, context=self.context, model=model_setting)
-            raw_responses = self.openai_gateway.call([chat_request])
-            text_response = raw_responses[chat_request.get_response_key()]
-            logger.info("OpenAI Chat response: " + json.dumps(text_response))
+            raw_responses = self.openai_gateway.call([chat_request], handler_input)
+            self.gpt_response = raw_responses[chat_request.get_response_key()]["prompt"]
+            full_message = raw_responses[chat_request.get_response_key()]["full_message"]
+            self.finish_reason = raw_responses[chat_request.get_response_key()]["finish_reason"]
+            logger.info("OpenAI Chat response: " + full_message)
 
             # Store text response content
-            content = text_response["choices"][0]["message"]["content"]
-            self.gpt_raw_response = text_response["choices"][0]["message"]["content"]
-            self.context.append({"role": "assistant", "content": content})
-            self.finish_reason = text_response["choices"][0]["finish_reason"]
-
-            # Replace special characters
-            self.gpt_response = replace_special_characters(content)
+            self.context.append({"role": "assistant", "content": full_message})
         except requests.exceptions.Timeout as exception:
             logger.exception("OpenAI API call timeout")
             self.gpt_response = self.data[prompts.QUESTION_INTENT_OPENAI_TIMEOUT_MESSAGE]

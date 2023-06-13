@@ -32,6 +32,9 @@ class OpenAIRequest:
     def get_response_key(self) -> str:
         pass
 
+    def get_api_key(self):
+        pass
+
 
 class OpenAIChatRequest(OpenAIRequest):
     def __init__(self, api_key, context, max_token=GPT_MODEL_MAX_TOKEN, model=OpenAIConfig.GPT_MODEL_3_5.value):
@@ -44,8 +47,12 @@ class OpenAIChatRequest(OpenAIRequest):
         self.body = {
             "model": model,
             "messages": context,
-            "max_tokens": max_token
+            "max_tokens": max_token,
+            "stream": True
         }
+
+    def get_api_key(self):
+        return self.api_key
 
     def get_headers(self):
         return self.headers
@@ -85,3 +92,7 @@ class OpenAIImageRequest(OpenAIRequest):
 
     def get_response_key(self):
         return RESULT_KEY_IMAGE_RESPONSE
+
+    def get_api_key(self):
+        return self.api_key
+

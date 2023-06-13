@@ -40,9 +40,13 @@ class ModelIntentHandler(AbstractRequestHandler):
             if ("3" in utterance_text) or ("three" in utterance_text):
                 speech = self.data[prompts.MODEL_UPDATE_RESPONSE].format("GPT 3.5 Turbo")
                 self.ddb_gateway.update_model_setting(customer_id, OpenAIConfig.GPT_MODEL_3_5.value)
+                handler_input.attributes_manager.session_attributes["model_setting"] \
+                    = OpenAIConfig.GPT_MODEL_3_5.value
             elif ("4" in utterance_text) or ("three" in utterance_text):
                 speech = self.data[prompts.MODEL_UPDATE_RESPONSE].format("GPT 4")
                 self.ddb_gateway.update_model_setting(customer_id, OpenAIConfig.GPT_MODEL_4.value)
+                handler_input.attributes_manager.session_attributes["model_setting"] \
+                    = OpenAIConfig.GPT_MODEL_4.value
             else:
                 raise Exception("Invalid model selection")
             return handler_input.response_builder \

@@ -1,3 +1,5 @@
 ask-sdk-core
 ask_sdk
 boto3
+json_stream
+openai

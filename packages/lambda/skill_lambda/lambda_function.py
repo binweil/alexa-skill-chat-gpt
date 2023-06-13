@@ -151,7 +151,7 @@ class RequestLogger(AbstractRequestInterceptor):
     def process(self, handler_input):
         # type: (HandlerInput) -> None
         logger.debug("Alexa Request: {}".format(
-            handler_input.request_envelope.request))
+            handler_input.request_envelope))
 
 
 class ResponseLogger(AbstractResponseInterceptor):
