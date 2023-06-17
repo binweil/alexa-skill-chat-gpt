@@ -1,4 +1,3 @@
-import json
 import logging
 import requests
 
@@ -18,7 +17,6 @@ from constants.secret_manager_constants import OPENAI_API_KEY_SECRET_MANAGER_KEY
 from handlers.buy_subs_intent_handler import BuySubsIntentHandler
 from handlers.cancel_subs_handler import CancelSubsIntentHandler
 from handlers.help_intent_handler import HelpIntentHandler
-from directive.progressive_directive import call_directive_service
 from handlers.model_intent import ModelIntentHandler
 from services.ddb_gateway import DynamoDBGateway
 from services.openai_gateway import OpenAIGateway
@@ -26,7 +24,6 @@ from services.secret_manager_gateway import SecretManagerGateway
 from utils.intent_dispatch_utils import is_clear_context_request, is_stop_session_request, is_buy_subs_request, \
     is_cancel_subs_request, supports_apl, is_help_request, is_update_model_request
 from utils.isp_utils import is_entitled
-from utils.ssml_utils import replace_special_characters
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -130,9 +127,6 @@ class QuestionIntentHandler(AbstractRequestHandler):
                         slot_to_elicit=QUESTION_INTENT_QUESTION_SLOT_NAME)) \
                     .set_should_end_session(should_end_session=False) \
                     .response
-
-            # Send Progressive Directive
-            # call_directive_service(handler_input)
 
             # Call OpenAI to get chat response
             self.get_api_key()
