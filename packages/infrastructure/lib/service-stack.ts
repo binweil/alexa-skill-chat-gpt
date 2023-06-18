@@ -36,7 +36,8 @@ export class ServiceStack extends Stack {
       partitionKey: {
         name: "customer_id",
         type: ddb.AttributeType.STRING
-      }
+      },
+      timeToLiveAttribute: "expire_ttl"
     })
 
     const handler = new lambda.Function(this, 'Alexa-ChatGPT-Handler', {

@@ -1,3 +1,5 @@
+from datetime import datetime
+from datetime import timedelta
 import boto3
 import os
 
@@ -12,6 +14,7 @@ class DynamoDBGateway:
         self.table_name = os.getenv('DYNAMODB_TABLE_NAME')
 
     def put(self, customer_id, interaction_count=0, model=OpenAIConfig.GPT_MODEL_3_5.value):
+        updated_ttl = (datetime.now() + timedelta(days=30)).strftime('%s')
         self.ddb_client.put_item(
             TableName=self.table_name,
             Item={
@@ -23,6 +26,9 @@ class DynamoDBGateway:
                 },
                 "model_setting": {
                     'S': model
+                },
+                ":p": {
+                    'N': updated_ttl
                 }
             }
         )
@@ -37,7 +43,6 @@ class DynamoDBGateway:
                     }
                 }
             )
-            print(response)
             if "Item" in response:
                 return {
                     "customer_id": response["Item"]["customer_id"]["S"],
@@ -50,7 +55,30 @@ class DynamoDBGateway:
             return None
 
     def update_interaction_count(self, customer_id, interaction_count):
-        expression = "set interaction_count=:r"
+        updated_ttl = (datetime.now() + timedelta(days=30)).strftime('%s')
+        expression = "set interaction_count=:r, expire_ttl=:p"
+        response = self.ddb_client.update_item(
+            TableName=self.table_name,
+            Key={
+                'customer_id': {
+                    'S': customer_id
+                },
+            },
+            UpdateExpression=expression,
+            ExpressionAttributeValues={
+                ':r': {
+                    "N": str(interaction_count)
+                },
+                ":p": {
+                    'N': updated_ttl
+                }
+            },
+            ReturnValues="UPDATED_NEW")
+        print(response)
+
+    def update_model_setting(self, customer_id, model_setting):
+        updated_ttl = (datetime.now() + timedelta(days=30)).strftime('%s')
+        expression = "set model_setting=:r, expire_ttl=:p"
         response = self.ddb_client.update_item(
             TableName=self.table_name,
             Key={
@@ -61,25 +89,10 @@ class DynamoDBGateway:
             UpdateExpression=expression,
             ExpressionAttributeValues={
                 ':r': {
-                    "N": str(interaction_count)
-                }
-            },
-            ReturnValues="UPDATED_NEW")
-        print(response)
-
-    def update_model_setting(self, customer_id, model_setting):
-        expression = "set model_setting=:p"
-        response = self.ddb_client.update_item(
-            TableName=self.table_name,
-            Key={
-                'customer_id': {
-                    'S': customer_id
-                }
-            },
-            UpdateExpression=expression,
-            ExpressionAttributeValues={
-                ':p': {
                     "S": model_setting
+                },
+                ":p": {
+                    'N': updated_ttl
                 }
             },
             ReturnValues="UPDATED_NEW")

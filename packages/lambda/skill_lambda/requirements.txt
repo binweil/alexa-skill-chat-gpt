@@ -3,3 +3,5 @@ ask_sdk
 boto3
 json_stream
 openai
+typing_extensions
+
