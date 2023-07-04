@@ -1,6 +1,6 @@
 from enum import Enum
 
-GPT_MODEL_MAX_TOKEN = 500
+GPT_MODEL_MAX_TOKEN = 300
 RESULT_KEY_TEXT_RESPONSE = "text_response"
 RESULT_KEY_IMAGE_RESPONSE = "image_response"
 

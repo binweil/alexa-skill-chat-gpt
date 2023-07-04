@@ -27,7 +27,7 @@ class DynamoDBGateway:
                 "model_setting": {
                     'S': model
                 },
-                ":p": {
+                "expire_ttl": {
                     'N': updated_ttl
                 }
             }

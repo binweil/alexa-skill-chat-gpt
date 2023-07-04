@@ -99,26 +99,18 @@ class HelpListScreenAPL:
                     {
                         "primaryText": "Chat with AI",
                         "secondaryText": "ex. Why sky is blue"
-                        # "primaryAction": [
-                        #     {
-                        #         "type": "SendEvent",
-                        #         "arguments": [
-                        #             "REDIRECT_QUESTION_INTENT_FROM_HELP"
-                        #         ]
-                        #     }
-                        # ]
+                    },
+                    {
+                        "primaryText": "Daily Trivia Question & Answer",
+                        "secondaryText": "say: \"Give me one daily trivia question\" "
+                    },
+                    {
+                        "primaryText": "Get Entertained with a Short Story",
+                        "secondaryText": "say: \"Tell me a bedtime story\" "
                     },
                     {
                         "primaryText": "Clear Chat Context",
                         "secondaryText": "ex. clear context"
-                        # "primaryAction": [
-                        #     {
-                        #         "type": "SendEvent",
-                        #         "arguments": [
-                        #             "REDIRECT_CLEAR_CONTEXT_INTENT"
-                        #         ]
-                        #     }
-                        # ]
                     }
                     # {
                     #     "primaryText": "Buy Subscription",
@@ -205,4 +197,3 @@ class BubbleChatAPL:
 
     def get_document_id(self):
         return self.document_id
-

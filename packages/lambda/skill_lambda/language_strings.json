@@ -2,8 +2,8 @@
 	"en": {
 		"SKILL_NAME": "Chat G. P. T.",
 		"LAUNCH_MESSAGE": "Welcome to Chat GPT. To listen to all the available options, just say <break time='0.3s'/> help. What do you want to chat about?",
-		"HELP_MESSAGE": "This skill is powered by ChatGPT 3.5. Here's what you can do: 1. Chat on anything <break time='0.3s'/> try ask me why sky is blue. <break time='0.3s'/> 2. To clear chat context, just say clear context. <break time='0.3s'/>",
-    	"HELP_REPROMPT": "You can say <break time='0.3s'/> tell me a joke <break time='0.3s'/> to get started.",
+		"HELP_MESSAGE": "This skill is powered by ChatGPT 3.5. Here are some things you can do: 1. Engage in a conversation on any topic. For example, you can ask me <break time='0.3s'/> why the sky is blue <break time='0.3s'/> 2. Test your knowledge by requesting a daily trivia question. Simply say <break time='0.3s'/> give me one daily trivia question <break time='0.3s'/> 3. Get entertained with a short story. Just say <break time='0.3s'/> Tell me a bedtime story <break time='0.3s'/> 4. Reset the conversation context by saying <break time='0.3s'/> Clear context",
+    	"HELP_REPROMPT": "You can say <break time='0.3s'/> give me one daily trivia question <break time='0.3s'/> to get started.",
 		"STOP_MESSAGE": "Talk to you later!",
 		"FALLBACK_MESSAGE": "Sorry, I didn't get your request. Can you please repeat your question? Or you can say <break time='0.3s'/> help <break time='0.3s'/> to see what I can do.",
 		"FALLBACK_REPROMPT": "What can I help you with?",

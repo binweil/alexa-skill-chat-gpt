@@ -43,7 +43,7 @@ export class ServiceStack extends Stack {
     const handler = new lambda.Function(this, 'Alexa-ChatGPT-Handler', {
       functionName: "Alexa-ChatGPT-Handler",
       runtime: lambda.Runtime.PYTHON_3_7,
-      timeout: Duration.seconds(30),
+      timeout: Duration.minutes(1),
       handler: 'lambda_function.lambda_handler',
       code: lambda.Code.fromAsset(path.join(__dirname, '../../lambda/skill_lambda/build/lambda.zip')),
       role: lambdaRole,
