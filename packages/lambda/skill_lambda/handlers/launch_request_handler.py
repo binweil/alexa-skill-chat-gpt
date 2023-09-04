@@ -16,6 +16,7 @@ from constants.intent_constants import QUESTION_INTENT_NAME, QUESTION_INTENT_QUE
 from constants.openai_constants import OpenAIConfig
 from services.ddb_gateway import DynamoDBGateway
 from utils.intent_dispatch_utils import supports_apl
+from utils.isp_utils import is_entitled
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -37,27 +38,38 @@ class LaunchRequestHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         logger.info("LaunchRequestHandler Handling Request")
+
         # Initialize session attributes
-        handler_input.attributes_manager.session_attributes["chat_context"] = []
-        handler_input.attributes_manager.session_attributes["model_setting"] = \
+        entiltement = is_entitled(handler_input)
+        if entiltement:
+            handler_input.attributes_manager.session_attributes["model_setting"] = \
+            OpenAIConfig.GPT_MODEL_4.value
+        else:
+            handler_input.attributes_manager.session_attributes["model_setting"] = \
             OpenAIConfig.GPT_MODEL_3_5.value
+        handler_input.attributes_manager.session_attributes["chat_context"] = []
         handler_input.attributes_manager.session_attributes["interaction_count"] = 0
         customer_id = handler_input.request_envelope.session.user.user_id
         customer_info = self.ddb_gateway.get(customer_id)
 
+        # Fetch & Update customer settings from DDB
         if customer_info is None:
-            self.ddb_gateway.put(customer_id, 0, OpenAIConfig.GPT_MODEL_3_5.value)
+            self.ddb_gateway.put(customer_id, 0, handler_input.attributes_manager.session_attributes["model_setting"])
         else:
-            handler_input.attributes_manager.session_attributes["model_setting"] = \
-                customer_info["model_setting"]
             # Update to customer["interaction_count"] if interaction_count check is accumulative later on
             handler_input.attributes_manager.session_attributes["interaction_count"] = 0
             self.ddb_gateway.update_interaction_count(customer_id, 0)
+            self.ddb_gateway.update_model_setting(customer_id, handler_input.attributes_manager.session_attributes["model_setting"])
 
         # get localization data
         data = handler_input.attributes_manager.request_attributes["_"]
 
-        speech = data[prompts.LAUNCH_MESSAGE]
+
+        if entiltement:
+            speech = data[prompts.LAUNCH_MESSAGE_ENTITLED]
+        else:
+            speech = data[prompts.LAUNCH_MESSAGE]
+
         try:
             self.launch_screen(handler_input)
         except Exception as exception:

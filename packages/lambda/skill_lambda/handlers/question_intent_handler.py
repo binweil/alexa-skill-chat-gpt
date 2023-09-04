@@ -111,8 +111,9 @@ class QuestionIntentHandler(AbstractRequestHandler):
             self.process_chat_context(handler_input)
 
             # Verify membership and interaction count
+            entiltement = is_entitled(handler_input)
             if (self.interaction_count > QUESTION_INTENT_MAX_FREE_INTERACTION_COUNT) \
-                    and (not is_entitled(handler_input)):
+                    and (not entiltement):
                 return handler_input.response_builder \
                     .speak(self.data[SUBSCRIPTION_UPSELL]) \
                     .add_directive(ElicitSlotDirective(
@@ -252,7 +253,7 @@ class QuestionIntentHandler(AbstractRequestHandler):
                         "message": chat["content"],
                         "sender": "alexa"
                     })
-                else:
+                elif chat["role"] == "user":
                     apl_chat_context.append({
                         "type": "SpeechBubble",
                         "message": chat["content"]

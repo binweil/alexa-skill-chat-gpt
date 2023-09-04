@@ -44,6 +44,10 @@ class OpenAIChatRequest(OpenAIRequest):
             "Content-Type": "application/json",
             "Authorization": "Bearer " + api_key
         }
+        context.insert(0, {
+            "role": "system",
+            "content": "At the end of each conversation, ask a follow up question if possible. When user ask which GPT model they are using, respond " + model
+        });
         self.body = {
             "model": model,
             "messages": context,
