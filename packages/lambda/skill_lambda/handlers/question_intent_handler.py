@@ -191,8 +191,13 @@ class QuestionIntentHandler(AbstractRequestHandler):
             slots = handler_input.request_envelope.request.intent.slots
             self.search_query = slots[QUESTION_INTENT_QUESTION_SLOT_NAME].value
 
-        chat_context = handler_input.attributes_manager.session_attributes["chat_context"]
-        self.interaction_count = handler_input.attributes_manager.session_attributes["interaction_count"]
+        chat_context = []
+        self.interaction_count = 0
+        try:
+            chat_context = handler_input.attributes_manager.session_attributes["chat_context"]
+            self.interaction_count = handler_input.attributes_manager.session_attributes["interaction_count"]
+        except:
+            logger.exception("Received null chat_context or interaction_count")
 
         if not chat_context:
             handler_input.attributes_manager.session_attributes["chat_context"] = []

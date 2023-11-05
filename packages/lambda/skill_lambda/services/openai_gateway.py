@@ -12,7 +12,13 @@ from ask_sdk_core.handler_input import HandlerInput
 
 from constants.openai_constants import OpenAIRequest
 from directive.progressive_directive import call_directive_service
+from services.cloudwatch import CloudWatchWrapper
 from utils.ssml_utils import replace_special_characters
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_random_exponential,
+)
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -23,17 +29,20 @@ class OpenAIGateway:
         start_time = time.time()
         max_workers = len(api_requests) + 1
         res = {}
+        cloudwatch = CloudWatchWrapper()
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             for api_request in api_requests:
                 future = executor.submit(self._request_task, api_request, handler_input)
                 response_key = api_request.get_response_key()
                 res[response_key] = future.result()
         logger.info("--- It took %s seconds for calling OpenAI ---" % (time.time() - start_time))
+        cloudwatch.put_metric_data("Alexa-ChatGPT", "OpenAI", "Latency", (time.time() - start_time), "Seconds")
         return res
 
+    @retry(wait=wait_random_exponential(min=30, max=60), stop=stop_after_attempt(2))
     def _request_task(self, request, handler_input):
         # type: (OpenAIRequest, HandlerInput) -> dict
-        logger.info("model_setting: " + request.get_body().get("model"))
+        logger.info("Calling OpenAI with model_setting: " + request.get_body().get("model"))
         raw_response = openai.ChatCompletion.create(
             api_key=request.get_api_key(),
             model=request.get_body().get("model"),
